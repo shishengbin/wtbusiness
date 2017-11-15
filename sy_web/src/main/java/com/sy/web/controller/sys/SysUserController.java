@@ -211,13 +211,14 @@ public class SysUserController extends PageSet {
 	}
 
 	/**
-	 * searcha users by pagination
+	 * search users by pagination
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/findAllUsersByPage")
 	public String findAllUsersByPage(HttpServletRequest request) {
 		log.info("entering...SysUserController...findAllUsersByPage()");
+		String param=request.getParameter("param");
 		// 用户名
 		String userName = request.getParameter("username");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -229,6 +230,9 @@ public class SysUserController extends PageSet {
 		request.setAttribute("userList", userList);
 		request.setAttribute("count", totalNum);
 		request.setAttribute("username", userName);
+		if(StringUtils.isNotBlank(param)){
+			return "sys/lookUpUserList";
+		}
 		return "sys/usermanage";
 	}
 

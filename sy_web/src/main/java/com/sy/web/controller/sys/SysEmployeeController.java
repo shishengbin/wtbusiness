@@ -14,6 +14,8 @@ import com.sy.modules.entity.sys.SysEmployee;
 import com.sy.modules.entity.sys.SysUser;
 import com.sy.modules.entity.vo.SysEmployeeVo;
 import com.sy.modules.service.sys.SysEmployeeService;
+import com.sy.web.commons.Constants;
+import com.sy.web.commons.JsonUtil;
 import com.sy.web.commons.SessionUtil;
 
 @Controller
@@ -22,7 +24,7 @@ public class SysEmployeeController {
 	
 	@Autowired
 	private SysEmployeeService emservice;
-	
+	//查询所有员工
 	@RequestMapping(value = "/findAllEmployees", method = { RequestMethod.GET,RequestMethod.POST })
 	public String findAllEmployees(Model model,@ModelAttribute SysEmployeeVo emVo, HttpServletRequest request) {
 		SysUser user=SessionUtil.getLoginUser(request);
@@ -33,10 +35,19 @@ public class SysEmployeeController {
 		model.addAttribute("emlist", emlist);
 		return "sys/employeelist";
 	}
-	
+	//预添加
 	@RequestMapping(value = "/precreateemp", method = { RequestMethod.GET,RequestMethod.POST })
 	public String precreateemp(){
 		return "sys/addemp";
+	}
+	//保存员工信息
+	@RequestMapping(value = "/createemployee", method = { RequestMethod.GET,RequestMethod.POST })
+	public String createemp(Model model,HttpServletRequest request,@ModelAttribute SysEmployee em){
+		String sysuserId=request.getParameter("user.id");
+		System.out.println(">>>"+sysuserId);
+		
+		return JsonUtil.transferJsonResponse(Constants.SUCCESS, Constants.MSG_ADD_SUCCESS, Constants.REL_EMPLOYEEMANAGE, null,
+				Constants.CLOSECURRENT, "sys/findAllEmployees");
 	}
 
 }

@@ -32,6 +32,7 @@ public class Constants {
 	// 对应主页面左边菜单rel
 	// sys
 	public static final String REL_USERMANAGER = "006";
+	public static final String REL_EMPLOYEEMANAGE="033";
 
 	public static final String REL_PARENTMENU = "page9";
 
