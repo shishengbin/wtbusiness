@@ -22,6 +22,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="${pageContext.request.contextPath}/sys/preadduser" target="dialog" title="添加帐号"  width="720" height="400"><span>添加</span></a></li>
+					<li><a class="delete" href="${pageContext.request.contextPath}/sys/{sid_user}/deleteuser" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/sys/searchSysUserByUId/{sid_user}" target="dialog" title="修改账号" width="720" height="400"><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
@@ -32,7 +33,7 @@
 				<th width="20%">登录账号</th>
 				<th width="15%">账号密码</th>
 				<th width="20%">账号描述</th>
-				<th width="10%">是否可用</th>
+				<th width="10%">是否启用</th>
 				<th width="10%">创建时间</th>
 				<th width="10%">最后修改时间</th>
 			</tr>
@@ -43,7 +44,7 @@
 						<td>${user["username"]}</td>
 						<td>${user["username"]}</td>
 						<td>${user["userremark"] }</td>
-						<td>${user["userstatus"]==1?"是":"否" }</td>
+						<td>${user["userstatus"]==1?"启用":"禁用" }</td>
 						<td><fmt:formatDate value="${user.createTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td><fmt:formatDate value="${user.updateTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 					</tr>

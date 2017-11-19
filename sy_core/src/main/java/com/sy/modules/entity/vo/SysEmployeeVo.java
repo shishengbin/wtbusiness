@@ -40,7 +40,7 @@ public class SysEmployeeVo extends BaseSearchObject<SysEmployeeExample> {
 		SysEmployeeExample filter = new SysEmployeeExample();
 		Criteria criteria = filter.createCriteria();
 		PageHelper.startPage(this.getPageNum(), this.getNumPerPage());
-		criteria.andEStateEqualTo(Constants.ISDELSTATE);
+		criteria.andDelStatusEqualTo(Constants.ISDELSTATE);
 		if (this.geteName() != null) {
 			criteria.andENameLike("%" + this.geteName() + "%");
 		}

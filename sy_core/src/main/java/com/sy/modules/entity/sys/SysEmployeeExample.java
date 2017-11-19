@@ -1079,6 +1079,10 @@ public class SysEmployeeExample {
             addCriterion("e_state =", value, "eState");
             return (Criteria) this;
         }
+        public Criteria andDelStatusEqualTo(Integer value) {
+            addCriterion("del_status =", value, "delStatus");
+            return (Criteria) this;
+        }
 
         public Criteria andEStateNotEqualTo(Integer value) {
             addCriterion("e_state <>", value, "eState");

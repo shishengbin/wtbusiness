@@ -43,7 +43,7 @@
 			<div class="unit">
 				<label>是否启用：</label>
 				<label><input type="radio" name="userstatus" value="1" checked="checked"/>启用</label>
-				<label><input type="radio" name="userstatus" value="0"/>禁止</label>
+				<label><input type="radio" name="userstatus" value="0"/>禁用</label>
 			</div>
 			<div class="divider"></div>
 		</div>
