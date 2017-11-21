@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllRoles" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllUsersByPage" method="post">
 	<div class="searchBar">
 		<table class="searchContent" style="float: left;">
 			<tr>
 				<td>
-					账号名称：<input type="text" name="" value=""/>
+					账号名称：<input type="text" name="username" value=""/>
 				</td>
 			</tr>
 		</table>
@@ -22,7 +22,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="${pageContext.request.contextPath}/sys/preadduser" target="dialog" title="添加帐号"  width="720" height="400"><span>添加</span></a></li>
-					<li><a class="delete" href="${pageContext.request.contextPath}/sys/{sid_user}/deleteuser" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
+					<li><a class="delete" href="${pageContext.request.contextPath}/sys/deleteuser/{sid_user}" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/sys/searchSysUserByUId/{sid_user}" target="dialog" title="修改账号" width="720" height="400"><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
@@ -40,7 +40,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${userList}" var="user">
-					<tr target="sid_user" rel="${user.id}">
+					<tr target="sid_user" rel="${user['id']}">
 						<td>${user["username"]}</td>
 						<td>${user["username"]}</td>
 						<td>${user["userremark"] }</td>

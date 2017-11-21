@@ -25,6 +25,7 @@ public class SysUser extends ParentEntity {
 	private String alipayAccount;
 	private CompanyInfo company;
 	private Keyword key;
+	private Integer delStatus;
 	public SysUser() {
 	}
 
@@ -125,6 +126,14 @@ public class SysUser extends ParentEntity {
 
 	public String toString(){
 		return "user info{id :"+id+",username： "+username+"}";
+	}
+
+	public Integer getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(Integer delStatus) {
+		this.delStatus = delStatus;
 	}
 
 

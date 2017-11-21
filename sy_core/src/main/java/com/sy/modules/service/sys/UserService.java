@@ -97,5 +97,10 @@ public class UserService extends AbstractService<SysUser, Long, UserDao> {
 	public void updateUserAlipay(SysUser user) {
 		userDao.updateUserAlipay(user);
 	}
+	
+	//删除帐号
+	public int deleteUser(Long uid){
+		return userDao.updateUserById(uid);
+	}
 
 }

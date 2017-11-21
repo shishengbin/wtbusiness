@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sy.modules.dao.sys.UserDao">
 	<!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
-
 	<!-- 封装用户结果集 -->
 	<resultMap type="SysUser" id="resultListUser">
 		<id property="id" column="user_id" />
@@ -19,6 +18,7 @@
 		<result property="alipayKey" column="alipay_key" />
 		<result property="alipayId" column="alipay_id" />
 		<result property="alipayAccount" column="alipay_account" />
+		<result property="delStatus" column="del_status" />
 		<association property="key"	resultMap="com.sy.modules.dao.agt.KeywordDao.keyResult"></association>
 		<association property="company"	resultMap="com.sy.modules.dao.sys.CompanyInfoDao.comResult"></association>
 	</resultMap>
@@ -65,12 +65,16 @@
 			su.create_name as createName,
 			su.create_time as createTime,
 			su.update_name as updateName,
-			su.update_time as updateTime
+			su.update_time as updateTime,
+			su.del_status as delStatus
 		FROM
 		sys_user as su
-		where 1=1 and su.parent_id=1
+		where 1=1 and del_status=1
 		<if test="userName!=null">
-			and su.user_name like "%"#{userName}"%"
+			and su.user_name like   CONCAT('%','${userName}','%')
+		</if>
+		<if test="parentId!=null">
+			and su.parent_id =#{parentId}
 		</if>
 		<if test="lowerLimit!=null and upperLimit != null">
 			limit #{lowerLimit},#{upperLimit}
@@ -92,7 +96,8 @@
 		su.update_time as 	updateTime,
 		su.alipay_key as 	alipayKey,
 		su.alipay_id as 	alipayId,
-		su.alipay_account as alipayAccount
+		su.alipay_account as alipayAccount,
+		su.del_status as delStatus
 		from
 		sys_user as su
 		where 1=1 and su.user_id=#{id}
@@ -109,15 +114,16 @@
 			create_name as createName,
 			create_time as createTime,
 			update_name as updateName,
-			update_time as updateTime
+			update_time as updateTime,
+			del_status as delStatus
 		from sys_user
 		where user_name=#{username}
 	</select>
 	
 	<select id="findCountByParam" parameterType="map" resultType="long">
-		select count(*) from sys_user where 1=1
+		select count(*) from sys_user where 1=1 and parent_id=#{parentId} and del_status=1
 		<if test="userName!=null">
-			and user_name like "%"#{userName}"%"
+			and user_name like CONCAT('%','${userName}','%')
 		</if>
 		<if test="roleId!=null">
 			and role_id = #{roleId}
@@ -125,7 +131,7 @@
 	</select>
 	
 	<select id="count" resultType="long">
-		select count(*) from sys_user
+		select count(*) from sys_user where del_status=1
 	</select>
 	
 	<insert id="create" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
@@ -152,6 +158,9 @@
 			<if test="createTime != null">
 				create_time,
 			</if>
+			<if test="delStatus != null">
+				del_status,
+			</if>
 		</trim>
 		 <trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="username != null">
@@ -175,6 +184,9 @@
 			<if test="createTime != null">
 				#{createTime},
 			</if>
+			<if test="delStatus != null">
+				#{delStatus},
+			</if>
 		</trim>
 	</insert>
 	
@@ -194,6 +206,11 @@
 		where user_id=#{id}
 	</update>
 
+	<update id="updateUserById" parameterType="java.lang.Long">
+		update sys_user set	del_status=0
+		where user_id=#{uid}
+	</update>
+	
 	<delete id="deleteById" parameterType="long">
 		delete from sys_user
 		where

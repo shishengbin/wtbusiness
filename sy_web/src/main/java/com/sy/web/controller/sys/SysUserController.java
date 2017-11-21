@@ -132,6 +132,24 @@ public class SysUserController extends PageSet {
 				Constants.MSG_DEL_FAIL, Constants.REL_USERMANAGER, null, null,
 				null);
 	}
+	//假删除
+	@RequestMapping(value = "/deleteuser/{uid}")
+	@ResponseBody
+	public 	String deleteUser(@PathVariable Long uid,HttpServletRequest request) {
+		log.info("....entering...SysUserController...deleteUser().....");
+		try{
+			if (uid != null) {
+				int num=userservice.deleteUser(uid);
+				if(num>0){
+					return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_DEL_SUCCESS, Constants.REL_USERMANAGER, null,Constants.FORWARD, "sys/findAllUsersByPage");
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		log.info("....leaving...SysUserController...deleteUser()");
+		return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_DEL_FAIL, Constants.REL_USERMANAGER, null, null,null);
+	}
 
 	/**
 	 * prepare update
@@ -224,6 +242,8 @@ public class SysUserController extends PageSet {
 		Map<String, Object> map = new HashMap<String, Object>();
 		this.setPagination(request, map);
 		map.put("userName", userName);
+		//当前默认为1
+		map.put("parentId", 1);
 		List<SysUser> userList = userservice.findAllUserByPage(map);
 		// 总数
 		long totalNum = userservice.findCountByParam(map);

@@ -44,6 +44,8 @@ public interface UserDao extends ParentDao<SysUser, Long> {
 	public void updateStyle(Map<String, Object> map);
 
 	public void updateUserAlipay(SysUser user);
+	
+	public int updateUserById(Long uid);
 
 
 }
