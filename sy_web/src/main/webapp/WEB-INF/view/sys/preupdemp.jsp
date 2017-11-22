@@ -73,7 +73,7 @@
 				<input id="inputOrg1" name="user.id" value="" type="hidden"/>
 				<input id="inputOrg1" name="user.orgName" value="" type="hidden"/>
 				<input type="text" readonly="readonly"  name="user.userName" value="${emp['sysUserId'] }"/>
-				<a class="btnLook" href="sys/findAllUsersByPage?param=lookup" lookupGroup="user">查找带回</a>		
+				<a class="btnLook" href="sys/lookUpUserList" lookupGroup="user">查找带回</a>		
 			</p>
 			<p>
 				<label>员工状态：</label>

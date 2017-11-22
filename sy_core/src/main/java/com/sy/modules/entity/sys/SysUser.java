@@ -26,6 +26,7 @@ public class SysUser extends ParentEntity {
 	private CompanyInfo company;
 	private Keyword key;
 	private Integer delStatus;
+	private Integer eStatus;
 	public SysUser() {
 	}
 
@@ -122,6 +123,14 @@ public class SysUser extends ParentEntity {
 
 	public void setParentid(Integer parentid) {
 		this.parentid = parentid;
+	}
+
+	public Integer geteStatus() {
+		return eStatus;
+	}
+
+	public void seteStatus(Integer eStatus) {
+		this.eStatus = eStatus;
 	}
 
 	public String toString(){

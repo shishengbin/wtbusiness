@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageInfo;
 import com.sy.modules.common.Constants;
 import com.sy.modules.dao.sys.SysEmployeeMapper;
+import com.sy.modules.dao.sys.UserDao;
 import com.sy.modules.entity.sys.SysEmployee;
 import com.sy.modules.entity.vo.SysEmployeeVo;
 
@@ -18,6 +19,8 @@ public class SysEmployeeService {
 
 	@Autowired
 	private SysEmployeeMapper employmapper;
+	@Autowired
+	private UserDao userDao;
 
 	// 查询所有员工
 	public PageInfo<SysEmployee> findAllSysEmployeesByPage(SysEmployeeVo employeeVo) {
@@ -32,7 +35,10 @@ public class SysEmployeeService {
 	//添加员工
 	public int saveEmployee(SysEmployee emp){
 		emp.setDelStatus(Constants.ISDELSTATE);
-		return employmapper.insertSelective(emp);
+		int num=employmapper.insertSelective(emp);
+		//将这个帐号标记为已用
+		userDao.updateUserWithUse((emp.getSysUserId()).longValue());
+		return num;
 	}
 	
 	//删除
@@ -47,7 +53,9 @@ public class SysEmployeeService {
 	//修改
 	public int updateEmployee(SysEmployee emp){
 		emp.setUpdateTime(new Date());
-		return employmapper.updateByPrimaryKeySelective(emp);
+		int num=employmapper.updateByPrimaryKeySelective(emp);
+		employmapper.updateByPrimaryKeySelective(emp);
+		return num;
 	}
 
 }

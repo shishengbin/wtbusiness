@@ -103,6 +103,8 @@ public class SysUserController extends PageSet {
 				user.setUserstatus(Integer.parseInt(userstatus));
 				user.setParentid(Integer.parseInt(parentId));
 				user.setRoleId(Integer.parseInt(roleId));
+				user.setDelStatus(Constants.ISDELSTATE);
+				user.seteStatus(Constants.DELSTATE);
 				userservice.create(user);
 				//map.put("user", user);
 			}
@@ -254,6 +256,26 @@ public class SysUserController extends PageSet {
 			return "sys/lookUpUserList";
 		}
 		return "sys/usermanage";
+	}
+	
+	@RequestMapping(value = "/lookUpUserList")
+	public String lookUpUserList(HttpServletRequest request) {
+		log.info("entering...SysUserController...findAllUsersByPage()");
+		// 用户名
+		String userName = request.getParameter("username");
+		Map<String, Object> map = new HashMap<String, Object>();
+		this.setPagination(request, map);
+		map.put("userName", userName);
+		//当前默认为1
+		map.put("parentId", 1);
+		map.put("eStatus", 0);
+		List<SysUser> userList = userservice.findAllUserByPage(map);
+		// 总数
+		long totalNum = userservice.findCountByParam(map);
+		request.setAttribute("userList", userList);
+		request.setAttribute("count", totalNum);
+		request.setAttribute("username", userName);
+		return "sys/lookUpUserList";
 	}
 
 	/**

@@ -46,6 +46,8 @@ public interface UserDao extends ParentDao<SysUser, Long> {
 	public void updateUserAlipay(SysUser user);
 	
 	public int updateUserById(Long uid);
+	
+	public void updateUserWithUse(Long uid);
 
 
 }

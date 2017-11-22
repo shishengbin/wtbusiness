@@ -19,6 +19,7 @@
 		<result property="alipayId" column="alipay_id" />
 		<result property="alipayAccount" column="alipay_account" />
 		<result property="delStatus" column="del_status" />
+		<result property="eStatus" column="e_status" />
 		<association property="key"	resultMap="com.sy.modules.dao.agt.KeywordDao.keyResult"></association>
 		<association property="company"	resultMap="com.sy.modules.dao.sys.CompanyInfoDao.comResult"></association>
 	</resultMap>
@@ -76,6 +77,9 @@
 		<if test="parentId!=null">
 			and su.parent_id =#{parentId}
 		</if>
+		<if test="eStatus!=null">
+			and su.e_status =#{eStatus}
+		</if>
 		<if test="lowerLimit!=null and upperLimit != null">
 			limit #{lowerLimit},#{upperLimit}
 		</if>
@@ -117,7 +121,7 @@
 			update_time as updateTime,
 			del_status as delStatus
 		from sys_user
-		where user_name=#{username}
+		where user_name=#{username} and user_status=1 and del_status =1
 	</select>
 	
 	<select id="findCountByParam" parameterType="map" resultType="long">
@@ -127,6 +131,9 @@
 		</if>
 		<if test="roleId!=null">
 			and role_id = #{roleId}
+		</if>
+		<if test="eStatus!=null">
+			and e_status =#{eStatus}
 		</if>
 	</select>
 	
@@ -161,6 +168,9 @@
 			<if test="delStatus != null">
 				del_status,
 			</if>
+			<if test="eStatus != null">
+				e_status,
+			</if>
 		</trim>
 		 <trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="username != null">
@@ -186,6 +196,9 @@
 			</if>
 			<if test="delStatus != null">
 				#{delStatus},
+			</if>
+			<if test="eStatus != null">
+				#{eStatus},
 			</if>
 		</trim>
 	</insert>
@@ -216,5 +229,11 @@
 		where
 		user_id=#{id}
 	</delete>
+	
+	<update id="updateUserWithUse" parameterType="java.lang.Long">
+		update sys_user set
+			e_status =1
+		where user_id=#{uid}
+	</update>
 	
 </mapper>

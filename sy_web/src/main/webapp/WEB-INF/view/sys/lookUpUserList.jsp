@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllUsersByPage?param=lookup" method="post">
+	<form onsubmit="return dwzSearch(this,'dialog');" action="${pageContext.request.contextPath}/sys/findAllUsersByPage?param=lookup" method="post">
 	<div class="searchBar">
 		<table class="searchContent" style="float: left;">
 			<tr>
@@ -44,7 +44,7 @@
 						<td>${user["username"]}</td>
 						<td>${user["username"]}</td>
 						<td>${user["userremark"] }</td>
-						<td>${user["userstatus"]==1?"启用":"禁止" }</td>
+						<td>${user["userstatus"]==1?"启用":"禁用" }</td>
 						<td><fmt:formatDate value="${user.createTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td><fmt:formatDate value="${user.updateTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td><a class="btnSelect" href="javascript:$.bringBack({id:'${user.id }', userName:'${user.username}'})" title="查找带回">选择</a></td>
