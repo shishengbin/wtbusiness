@@ -25,7 +25,7 @@ public class SessionUtil {
 		SysUser user = null;
 		if (session != null) {
 			user = (SysUser) session.getAttribute(Constants.USER_LOGIN_SESSION_KEY);
-			return Long.valueOf(user.getId());
+			return Long.valueOf(user.getParentid());
 		}
 		return -1L;
 	}

@@ -50,7 +50,7 @@ public class WsAboutController extends PageSet {
 		log.info("entering...WsProductController...");
 		//获取用户ID
 		SysUser u=(SysUser) request.getSession().getAttribute(Constants.USER_LOGIN_SESSION_KEY);
-		WsAbout wa = aboutservice.selectAbout(u.getId());
+		WsAbout wa = aboutservice.selectAbout(u.getParentid().longValue());
 		//如果公司简介还不存在就创建一个
 		if(wa==null){
 			wa = new WsAbout();

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sy.modules.entity.sys.SysUser;
 import com.sy.modules.entity.wx.Account;
 import com.sy.modules.entity.wx.FirstSubscribe;
 import com.sy.modules.entity.wx.resp.MyArticle;
@@ -42,9 +43,10 @@ public class FirstSubscribeController extends PageSet {
 	 */
 	private Account findAccount(HttpServletRequest request) {
 		log.info("entering...FirstRespController...findAccount()");
-		long userid = SessionUtil.getUserId(request);
+		//long userid = SessionUtil.getUserId(request);
+		SysUser u=SessionUtil.getLoginUser(request);
 		// 获取公众号id
-		Account account = accountService.findAccountInfo(userid);
+		Account account = accountService.findAccountInfo(u.getParentid());
 		return account;
 	}
 

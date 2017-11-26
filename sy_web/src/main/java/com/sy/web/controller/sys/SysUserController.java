@@ -365,9 +365,10 @@ public class SysUserController extends PageSet {
 	@RequestMapping(value = "/findVxaccount")
 	public String findVxaccount(HttpServletRequest request) {
 		log.info("entering...SysUserController...findVxaccount()");
-		Long userid = SessionUtil.getUserId(request);
+		//Long userid = SessionUtil.getUserId(request);
+		SysUser user=SessionUtil.getLoginUser(request);
 		// 根据登陆账号查询微信公众账号信息
-		Account account = acservice.findAccountInfo(userid);
+		Account account = acservice.findAccountInfo(user.getParentid());
 		if (null != account) {
 			request.setAttribute("account", account);
 			return "sys/vxaccount";
