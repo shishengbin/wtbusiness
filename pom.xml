@@ -11,6 +11,7 @@
 		<module>sy_common</module>
 		<module>sy_web</module>
 		<module>sy_platform</module>
+		<module>sy_api</module>
 	</modules>
 
 	<properties>
