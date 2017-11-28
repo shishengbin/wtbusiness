@@ -42,7 +42,7 @@
 					<td>是</td>
 			</tr>
 			<c:forEach items="${rolelist.list}" var="role">
-					<tr target="sid_user" rel="${role["wtRId"]}">
+					<tr target="sid_user" rel="${role['wtRId']}">
 						<td>${role["wtRName"] }</td>
 						<td>${role["wtRDescription"] }</td>
 						<td>${role["delState"]==1?"是":"否" }</td>
