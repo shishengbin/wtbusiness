@@ -51,7 +51,7 @@
 					<td>${record['rOnDuty'] ==1?"上班":"下班"}</td>
 					<td>${record['rName'] }</td>
 					<td>手机打卡</td>
-					<td>苏州市星宇路12号</td>
+					<td>${record['rAddress'] }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
