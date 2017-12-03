@@ -54,7 +54,7 @@ public class SysEmployeeService {
 	public int updateEmployee(SysEmployee emp){
 		emp.setUpdateTime(new Date());
 		int num=employmapper.updateByPrimaryKeySelective(emp);
-		employmapper.updateByPrimaryKeySelective(emp);
+		//employmapper.updateByPrimaryKeySelective(emp);
 		return num;
 	}
 

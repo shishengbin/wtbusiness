@@ -385,6 +385,66 @@ public class OaLinkmanExample {
             return (Criteria) this;
         }
 
+        public Criteria andSysUserIdIsNull() {
+            addCriterion("sys_user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdIsNotNull() {
+            addCriterion("sys_user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdEqualTo(Integer value) {
+            addCriterion("sys_user_id =", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdNotEqualTo(Integer value) {
+            addCriterion("sys_user_id <>", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdGreaterThan(Integer value) {
+            addCriterion("sys_user_id >", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sys_user_id >=", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdLessThan(Integer value) {
+            addCriterion("sys_user_id <", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sys_user_id <=", value, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdIn(List<Integer> values) {
+            addCriterion("sys_user_id in", values, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdNotIn(List<Integer> values) {
+            addCriterion("sys_user_id not in", values, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("sys_user_id between", value1, value2, "sysUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sys_user_id not between", value1, value2, "sysUserId");
+            return (Criteria) this;
+        }
+
         public Criteria andLmPostIsNull() {
             addCriterion("lm_post is null");
             return (Criteria) this;
