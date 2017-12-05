@@ -48,6 +48,9 @@ public class OaLinkmanVo extends BaseSearchObject<OaLinkmanExample> {
 		if (this.getLmMobile() != null) {
 			criteria.andLmMobileLike("%" + this.getLmMobile() + "%");
 		}
+		if (this.getcId() != null) {
+			criteria.andCIdEqualTo(this.getcId());
+		}
 		return filter;
 	}
 }

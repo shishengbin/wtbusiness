@@ -42,7 +42,9 @@ public class OaCustomerController {
 	@RequestMapping(value = "/precreatecustomer", method = { RequestMethod.GET,RequestMethod.POST })
 	public String precreatecustomer(Model model,HttpServletRequest request) {
 		SysUser user = SessionUtil.getLoginUser(request);
-		model.addAttribute("userName", user.getUsername());
+		if(null !=user && StringUtils.isNotBlank(user.getUsername())) {
+			model.addAttribute("userName", user.getUsername());
+		}
 		return "oa/addcustomer";
 	}
 

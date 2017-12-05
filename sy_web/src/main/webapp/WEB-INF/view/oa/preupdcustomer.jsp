@@ -14,8 +14,15 @@
 				<input name="cName" class="required" type="text" size="30" value="${customer['cName'] }"/>
 			</p>
 			<p>
+				<label>吉日：</label>
+				<input name="cLuckyDay"  alt="例:2018年1月1日" type="text" size="30" value="${customer['cLuckyDay'] }"/>
+			</p>
+			<p>
+				<label>酒店：</label>
+				<input name="cHotel"  type="text" size="30" value="${customer['cHotel'] }"/>
+			</p>
+			<p>
 				<label>所属区域：</label>
-				
 				<input name="cArea" type="text" size="30" value="${customer['cArea'] }"/>
 			</p>
 			<p>
@@ -33,13 +40,13 @@
 			<p>
 				<label>客户来源：</label>
 				<select name="cResource" class="required combox">
-					<option value="1" selected>酒店介绍</option>
-					<option value="2" >影楼介绍</option>
-					<option value="3">上门客户</option>
-					<option value="4">客户介绍</option>
-					<option value="5">同行介绍</option>
-					<option value="6">媒体资源</option>
-					<option value="7">其他</option>
+					<option value="1"	<c:if test="${customer['cResource']==1 }">selected</c:if> 	>酒店介绍</option>
+					<option value="2"	<c:if test="${customer['cResource']==2 }">selected</c:if>	>影楼介绍</option>
+					<option value="3"	<c:if test="${customer['cResource']==3 }">selected</c:if>	>上门客户</option>
+					<option value="4"	<c:if test="${customer['cResource']==4 }">selected</c:if>	>客户介绍</option>
+					<option value="5"	<c:if test="${customer['cResource']==5 }">selected</c:if>	>同行介绍</option>
+					<option value="6"	<c:if test="${customer['cResource']==6 }">selected</c:if>	>媒体资源</option>
+					<option value="7"	<c:if test="${customer['cResource']==7 }">selected</c:if>	>其他</option>
 				</select>
 			</p>
 			<p>

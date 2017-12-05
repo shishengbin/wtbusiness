@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllRoles" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/oa/findAllCustomersByPage" method="post">
 	<div class="searchBar">
 		<table class="searchContent" style="float: left;">
 			<tr>
 				<td>
-					客户名称：<input type="text" name="wtRName" value=""/>
+					客户名称：<input type="text" name="cName" value=""/>
 				</td>
 			</tr>
 		</table>
@@ -33,7 +33,8 @@
 			<tr>
 				<th width="12%">客户名称</th>
 				<th width="10%">手机号码</th>
-				<th width="10%">联系人</th>
+				<th width="8%">主联系人</th>
+				<th width="8%">酒店</th>
 				<th width="8%">客户所有人</th>
 				<th width="8%">客户标签</th>
 				<th width="8%">客户状态</th>
@@ -47,6 +48,7 @@
 						<td><a class="sortfont" target="navTab" title="查看联系人" href="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/${cus['cId'] }">${cus['cName'] }</a></td>
 						<td>${cus['cMobile'] }</td>
 						<td>${cus['cLinkman'] }</td>
+						<td>${cus['cHotel'] }</td>
 						<td>${cus['sysUserName'] }</td>
 						<td>
 						<c:choose>

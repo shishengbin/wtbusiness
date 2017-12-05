@@ -9,7 +9,7 @@ import com.sy.modules.entity.vo.BaseSearchObject;
 public class OaCustomerVo extends BaseSearchObject<OaCustomerExample> {
 	
 	private String cName;//客户名称
-	private Integer sysUserId;
+	private Integer sysUserId;//客户所属人
 
 	public String getcName() {
 		return cName;

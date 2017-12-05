@@ -6,11 +6,19 @@
 		<div class="pageFormContent" layoutH="98">
 			<p>
 				<label>创建人：</label>
-				<input name=""  type="text" size="30" readonly="readonly" value="${userName}"/>
+				<input name="sysUserName"  type="text" size="30" readonly="readonly" value="${userName}"/>
 			</p>
 			<p>
 				<label>客户名称：</label>
 				<input name="cName" class="required" type="text" size="30"/>
+			</p>
+			<p>
+				<label>吉日：</label>
+				<input name="cLuckyDay"  alt="例:2018年1月1日" type="text" size="30"/>
+			</p>
+			<p>
+				<label>酒店：</label>
+				<input name="cHotel"  type="text" size="30"/>
 			</p>
 			<p>
 				<label>所属区域：</label>
@@ -25,6 +33,7 @@
 				<label>电话号码：</label>
 				<input type="text" size="30" alt="请输入数字" name="cPhone" />
 			</p>
+			
 			<p>
 				<label>手机号码：</label>
 				<input  type="text" size="30" alt="请输入数字" class="required" name="cMobile"/>
