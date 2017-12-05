@@ -26,6 +26,7 @@
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findCustomerById/{sid_user}" target="navTab" title="修改客户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/{sid_user}" target="navTab"	rel="020" title="查看联系人" ><span>查看联系人</span></a></li>
+			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllRecordsByPage/{sid_user}" target="navTab"	rel="040" title="查看联系人" ><span>更进记录</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="112">
@@ -34,9 +35,9 @@
 				<th width="12%">客户名称</th>
 				<th width="10%">手机号码</th>
 				<th width="8%">主联系人</th>
-				<th width="8%">酒店</th>
-				<th width="8%">客户所有人</th>
+				<th width="12%">酒店</th>
 				<th width="8%">客户标签</th>
+				<th width="8%">客户所有人</th>
 				<th width="8%">客户状态</th>
 				<th width="10%">创建时间</th>
 				<th width="10%">修改时间</th>
@@ -49,7 +50,6 @@
 						<td>${cus['cMobile'] }</td>
 						<td>${cus['cLinkman'] }</td>
 						<td>${cus['cHotel'] }</td>
-						<td>${cus['sysUserName'] }</td>
 						<td>
 						<c:choose>
 							<c:when test="${cus['cScale']==1 }">
@@ -63,6 +63,7 @@
 							</c:when>
 						</c:choose>
 						</td>
+						<td>${cus['sysUserName'] }</td>
 						<td>
 						<c:choose>
 							<c:when test="${cus['cStatus']==1 }">

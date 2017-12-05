@@ -26,13 +26,13 @@ public class OaLinkmanController {
 	private OaLinkmanService linkmanservice;
 
 	// find all customers by page
-	@RequestMapping(value = "/findAllLinkmansByPage/{lmId}", method = {RequestMethod.GET, RequestMethod.POST })
-	public String findAllLinkmansByPage(Model model,@PathVariable Long lmId, @ModelAttribute OaLinkmanVo linkmanVo, HttpServletRequest request) {
-		if(null !=lmId && lmId>0){
-			linkmanVo.setcId(lmId);
+	@RequestMapping(value = "/findAllLinkmansByPage/{cId}", method = {RequestMethod.GET, RequestMethod.POST })
+	public String findAllLinkmansByPage(Model model,@PathVariable Long cId, @ModelAttribute OaLinkmanVo linkmanVo, HttpServletRequest request) {
+		if(null !=cId && cId>0){
+			linkmanVo.setcId(cId);
 			PageInfo<OaLinkman> linkmanlist = linkmanservice.findAllLinkMansByPage(linkmanVo);
 			model.addAttribute("linkmanlist", linkmanlist);
-			model.addAttribute("lmId", lmId);
+			model.addAttribute("cId", cId);
 		}
 		return "oa/linkmanlist";
 	}
@@ -53,11 +53,15 @@ public class OaLinkmanController {
 	@ResponseBody
 	public String saveCustomer(Model model, HttpServletRequest request,@ModelAttribute OaLinkman linkman) {
 		int flag = -1;
+		String cIdStr=request.getParameter("lmId");
 		if (null != linkman) {
+			if(StringUtils.isNotBlank(cIdStr)){
+				linkman.setcId(Long.parseLong(cIdStr));
+			}
 			flag = linkmanservice.saveLinkman(linkman);
 		}
 		if (flag > 0) {
-			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_ADD_SUCCESS, Constants.REL_LINKMANMANAGER,null, Constants.CLOSECURRENT, "oa/findAllLinkmansByPage/"+linkman.getLmId());
+			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_ADD_SUCCESS, Constants.REL_LINKMANMANAGER,null, Constants.CLOSECURRENT, "oa/findAllLinkmansByPage/"+linkman.getcId());
 		} else {
 			return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_ADD_FAIL, null, null, null, null);
 		}
@@ -98,7 +102,7 @@ public class OaLinkmanController {
 			flag = linkmanservice.updateLinkman(linkman);
 		}
 		if (flag > 0) {
-			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_UPDATE_SUCCESS, Constants.REL_LINKMANMANAGER,null, Constants.CLOSECURRENT, "oa/findAllLinkmansByPage/"+linkman.getLmId());
+			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_UPDATE_SUCCESS, Constants.REL_LINKMANMANAGER,null, Constants.CLOSECURRENT, "oa/findAllLinkmansByPage/"+linkman.getcId());
 		} else {
 			return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_UPDATE_FAIL, null, null, null, null);
 		}

@@ -15,47 +15,47 @@
 			</p>
 			<p>
 				<label>新郎电话：</label>
-				<input type="text" size="30" name="lmPhone1" />
+				<input type="text" size="30" name="lmPhone1" value="${linkman['lmPhone1'] }"/>
 			</p>
 			<p>
 				<label>新娘电话：</label>
-				<input type="text" size="30"  name="lmPhone2" />
+				<input type="text" size="30"  name="lmPhone2" value="${linkman['lmPhone2'] }"/>
 			</p>
 			<p>
 				<label>委托人电话：</label>
-				<input  type="text" size="30"   name="lmPhone3"/>
+				<input  type="text" size="30"   name="lmPhone3" value="${linkman['lmPhone3'] }"/>
 			</p>
 			<p>
 				<label>家长电话：</label>
-				<input  type="text" size="30"   name="lmPhone4"/>
+				<input  type="text" size="30"   name="lmPhone4" value="${linkman['lmPhone4'] }"/>
 			</p>
 			<p>
 				<label>邮箱：</label>
-				<input  type="text" size="30"  name="lmEmail"/>
+				<input  type="text" size="30"  name="lmEmail" value="${linkman['lmEmail'] }"/>
 			</p>
 			<p>
 				<label>生日：</label>
-				<input type="text" name="lmBirth" class="date" readonly="true"/>
+				<input type="text" name="lmBirth" class="date" readonly="true" value="${linkman['lmBirth'] }"/>
 				<a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			
 			<div class="divider"></div>
 			<p>
 				<label>QQ：</label>
-				<input   type="text" size="30"  name="lmQq"/>
+				<input   type="text" size="30"  name="lmQq"	value="${linkman['lmQq'] }"/>
 			</p>
 			<p>
 				<label>微信：</label>
-				<input type="text" size="30" name="lmWechat"/>
+				<input type="text" size="30" name="lmWechat"	value="${linkman['lmWechat'] }"/>
 			</p>
 			<p>
 				<label>职务：</label>
-				<input type="text" size="30" name="lmPost" />
+				<input type="text" size="30" name="lmPost" value="${linkman['lmPost'] }" />
 			</p>
 				<div class="divider"></div>
 			<dl class="nowrap">
 			<dt>联系人简介：</dt>
-			<dd><textarea name="lmPhone6" cols="60" rows="6"></textarea></dd>
+			<dd><textarea name="lmPhone6" cols="60" rows="6">${linkman['lmPhone6'] }</textarea></dd>
 		</dl>
 		</div>
 		<div class="formBar">
