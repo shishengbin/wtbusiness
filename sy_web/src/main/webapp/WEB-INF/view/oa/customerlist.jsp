@@ -26,7 +26,7 @@
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findCustomerById/{sid_user}" target="navTab" title="修改客户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/{sid_user}" target="navTab"	rel="020" title="查看联系人" ><span>查看联系人</span></a></li>
-			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllRecordsByPage/{sid_user}" target="navTab"	rel="040" title="查看联系人" ><span>更进记录</span></a></li>
+			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllRecordsByPage/{sid_user}" target="navTab"	rel="040" title="查看更进记录" ><span>更进记录</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="112">
@@ -84,7 +84,7 @@
 						</c:choose>
 						</td>
 						<td><fmt:formatDate value="${cus['createTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td><fmt:formatDate value="${cus['createTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td><fmt:formatDate value="${cus['updateTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
 					</tr>
 			</c:forEach>
 			

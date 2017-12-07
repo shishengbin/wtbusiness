@@ -21,9 +21,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${pageContext.request.contextPath}/oa/precreatelinkman?lmid=${lmId}" target="dialog" title="添加更进记录" width="880" height="480" ><span>添加</span></a></li>
-			<li><a class="delete" href="${pageContext.request.contextPath}/oa/{sid_user}/deleteLinkman" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
-			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findLinkmanById/{sid_user}" target="dialog" title="修改跟进记录" width="880" height="480" ><span>修改</span></a></li>
+			<li><a class="add" href="${pageContext.request.contextPath}/oa/precreaterecord?cid=${cId}" target="dialog" title="添加更进记录" width="650" height="400" ><span>添加</span></a></li>
+			<li><a class="delete" href="${pageContext.request.contextPath}/oa/{sid_user}/deleteRecord" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
+			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findRecordById/{sid_user}" target="dialog" title="修改跟进记录" width="650" height="400" ><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
@@ -41,12 +41,66 @@
 		<tbody>
 			<c:forEach items="${recordlist.list}" var="r">
 					<tr target="sid_user" rel="${r['rId'] }">
-						<td>${r['rId'] }</td>
-						<td>${r['rId'] }</td>
-						<td>${r['rId'] }</td>
-						<td>${r['rId'] }</td>
+						<td>${r['rCustomer'] }</td>
+						<td>
+						<c:choose>
+							<c:when test="${r['rMode']==1 }">
+							电话
+							</c:when>
+							<c:when test="${r['rMode']==2 }">
+							微信
+							</c:when>
+							<c:when test="${r['rMode']==3 }">
+							面谈
+							</c:when>
+							<c:when test="${r['rMode']==4 }">
+							QQ
+							</c:when>
+							<c:when test="${r['rMode']==5 }">
+							短信
+							</c:when>
+							<c:when test="${r['rMode']==6 }">
+							邮件
+							</c:when>
+							<c:when test="${r['rMode']==7}">
+							其他
+							</c:when>
+						</c:choose>
+						</td>
+						<td>
+						<c:choose>
+							<c:when test="${r['rMainThing']==1 }">
+							初期沟通
+							</c:when>
+							<c:when test="${r['rMainThing']==2 }">
+							问卷调查
+							</c:when>
+							<c:when test="${r['rMainThing']==3 }">
+							需求分析
+							</c:when>
+							<c:when test="${r['rMainThing']==4 }">
+							方案报价
+							</c:when>
+							<c:when test="${r['rMainThing']==5 }">
+							谈判审核
+							</c:when>
+						</c:choose>
+						</td>
+						<td>
+						<c:choose>
+							<c:when test="${r['rResult']==1 }">
+							继续更进
+							</c:when>
+							<c:when test="${r['rResult']==2 }">
+							成功签单
+							</c:when>
+							<c:when test="${r['rResult']==3 }">
+							客户流失
+							</c:when>
+						</c:choose>
+						</td>
 						<td><fmt:formatDate value="${r['createTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td><fmt:formatDate value="${r['createTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td><fmt:formatDate value="${r['updateTime']}" pattern="yyyy-MM-dd HH:mm"/></td>
 					</tr>
 			</c:forEach>
 		</tbody>

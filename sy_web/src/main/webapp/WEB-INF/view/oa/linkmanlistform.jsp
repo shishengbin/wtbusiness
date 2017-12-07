@@ -21,10 +21,11 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
+		<!-- 
 			<li><a class="add" href="${pageContext.request.contextPath}/oa/precreatelinkman?lmid=${cId}" target="dialog" title="添加联系人" width="880" height="480" ><span>添加</span></a></li>
 			<li><a class="delete" href="${pageContext.request.contextPath}/oa/{sid_user}/deleteLinkman" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findLinkmanById/{sid_user}" target="dialog" title="修改联系人" width="880" height="480" ><span>修改</span></a></li>
-			<li class="line">line</li>
+			<li class="line">line</li> -->
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="112">
@@ -44,7 +45,7 @@
 			<c:forEach items="${linkmanlist.list}" var="lkm">
 					<tr target="sid_user" rel="${lkm['lmId'] }">
 						<td>${lkm['lmName'] }</td>
-						<td>${customer['cName'] }</td>
+						<td>${lkm['cCustomer']}</td>
 						<td>${lkm['lmMobile'] }</td>
 						<td>${lkm['lmPhone1'] }</td>
 						<td>${lkm['lmPhone2'] }</td>

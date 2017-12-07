@@ -4,6 +4,7 @@
 	<form method="post" action="${pageContext.request.contextPath}/oa/saveLinkmanByUpd" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 		<input type="hidden" name="lmId" value="${linkman['lmId']}" />
+		<input type="hidden" name="cId" value="${linkman['cId']}" />
 			<p>
 				<label>联系人姓名：</label>
 				<input name="lmName" class="required" type="text" size="30" value="${linkman['lmName'] }"/>
