@@ -30,6 +30,7 @@
 	<table class="table" width="100%" layoutH="112">
 		<thead>
 			<tr>
+				<th width="8%">账号ID</th>
 				<th width="20%">登录账号</th>
 				<th width="15%">账号密码</th>
 				<th width="20%">账号描述</th>
@@ -41,8 +42,9 @@
 		<tbody>
 			<c:forEach items="${userList}" var="user">
 					<tr target="sid_user" rel="${user['id']}">
+						<td>${user["id"]}</td>
 						<td>${user["username"]}</td>
-						<td>${user["username"]}</td>
+						<td>${user["userpass"]}</td>
 						<td>${user["userremark"] }</td>
 						<td>${user["userstatus"]==1?"启用":"禁用" }</td>
 						<td><fmt:formatDate value="${user.createTime }" pattern="yyyy-MM-dd HH:mm"/></td>
@@ -51,20 +53,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="panelBar">
-		<div class="pages">
-			<span>显示</span>
-			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" showvalue="${numPerPage }">
-			<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="20">20</option>
-				<option value="30">30</option>
-				<option value="40">40</option>
-				<option value="50">50</option>
-			</select>
-			<span>条，共${count}条</span>
-		</div>
-		 <div class="pagination" targetType="navTab" totalCount="${count}" numPerPage="${numPerPage}"
-			pageNumShown="${pageSize}" currentPage="${curPage}"></div>
-    </div>
+	<c:import url="../ws/pageControl/paging.jsp" >
+		<c:param name="action" value="sys/findAllUsersByPage"></c:param>
+	</c:import>
 </div>
+

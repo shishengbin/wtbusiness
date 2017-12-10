@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
+
+<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/sys/findAllEmployees">
+    <input type="hidden" name="pageNum" value="1"/>
+		<input type="hidden" name="numPerPage" value="${numPerPage }" id="numPerPage"/><!-- 每页显示多少条 -->
+    <input type="hidden" name="pageSize" value="${model.numPerPage}"/>
+    <input type="hidden" name="orderField" value="${param.orderField}"/>
+    <input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllRoles" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllEmployees" method="post">
 	<div class="searchBar">
 		<table class="searchContent" style="float: left;">
 			<tr>
 				<td>
-					员工姓名：<input type="text" name="wtRName" value=""/>
+					员工姓名：<input type="text" name="eName" value=""/>
 				</td>
 			</tr>
 		</table>
@@ -30,8 +39,9 @@
 	<table class="table" width="100%" layoutH="112">
 		<thead>
 			<tr>
-				<th width="10%">姓名</th>
-				<th width="10%">编号</th>
+				<th width="10%">员工姓名</th>
+				<th width="8%">账号ID</th>
+				<th width="10%">员工编号</th>
 				<th width="10%">手机号码</th>
 				<th width="10%">邮箱</th>
 				<th width="5%">性别</th>
@@ -44,6 +54,7 @@
 			<c:forEach items="${emlist.list}" var="em">
 					<tr target="sid_user" rel="${em.eId}">
 						<td>${em["eName"]}</td>
+						<td>${em["sysUserId"]}</td>
 						<td>${em["eNumber"]}</td>
 						<td>${em["eMobile"]}</td>
 						<td>${em["eMail"]}</td>
@@ -59,7 +70,7 @@
 	<div class="panelBar">
 		<div class="pages">
 			<span>显示</span>
-			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" showvalue="${numPerPage}">
+			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" >
 			<option value="10">10</option>
 				<option value="15">15</option>
 				<option value="20">20</option>
@@ -67,6 +78,9 @@
 				<option value="40">40</option>
 				<option value="50">50</option>
 			</select>
+			<script>
+        		$("select[name='numPerPage']").val('${emlist.pageSize}');
+      		</script>
 			<span>条，共${emlist.total}条</span>
 		</div>
 		 <div class="pagination" targetType="navTab" totalCount="${emlist.total}" numPerPage="${emlist.pageSize}"

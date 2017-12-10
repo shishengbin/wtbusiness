@@ -6,9 +6,18 @@ import java.util.Date;
 public class SysEmployee implements Serializable {
 	
 	private Integer delStatus;
+	private SysUser sysuser;
 	
 	
-    public Integer getDelStatus() {
+    public SysUser getSysuser() {
+		return sysuser;
+	}
+
+	public void setSysuser(SysUser sysuser) {
+		this.sysuser = sysuser;
+	}
+
+	public Integer getDelStatus() {
 		return delStatus;
 	}
 

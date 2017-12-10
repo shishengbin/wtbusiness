@@ -33,6 +33,14 @@ public class UserService extends AbstractService<SysUser, Long, UserDao> {
 		return userDao.findCountByParam(map);
 	}
 	
+	public List<SysUser> findAllUserByPageWithLookUp(Map<String, Object> map) {
+		return userDao.findAllUserByPageWithLookUp(map);
+	}
+
+	public Long findCountByParamWithLookUp(Map<String, Object> map) {
+		return userDao.findCountByParamWithLookUp(map);
+	}
+	
 	public SysUser finUserByName(String username) {
 		return userDao.findUserByName(username);
 	}

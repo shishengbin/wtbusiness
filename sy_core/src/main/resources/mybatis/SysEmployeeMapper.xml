@@ -25,6 +25,11 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_name" property="updateName" jdbcType="VARCHAR" />
     <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <association property="sysuser"	javaType="com.sy.modules.entity.sys.SysUser">
+    	<id property="id" column="user_id" />
+		<result property="parentid" column="parent_id" />
+		<result property="username" column="user_name" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--

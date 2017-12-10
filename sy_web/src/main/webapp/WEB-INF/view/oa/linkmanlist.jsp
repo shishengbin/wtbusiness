@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
+<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/${cId }">
+    <input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value="${linkmanlist.pageSize }"/><!-- 每页显示多少条 -->
+</form>
 <div class="pageHeader">
 	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/${cId }" method="post">
 	<div class="searchBar">
@@ -66,6 +70,9 @@
 				<option value="40">40</option>
 				<option value="50">50</option>
 			</select>
+			<script>
+        		$("select[name='numPerPage']").val('${linkmanlist.pageSize}');
+      		</script>
 			<span>条，共${linkmanlist.total}条</span>
 		</div>
 		 <div class="pagination" targetType="navTab" totalCount="${linkmanlist.total}" numPerPage="${linkmanlist.pageSize}"

@@ -18,13 +18,14 @@
 				<input type="text" size="30" name="eEnName" />
 			</p>
 			<p>
-				<label>电话号码：</label>
-				<input type="text" size="30" name="ePhone" />
-			</p>
-			<p>
 				<label>手机号码：</label>
 				<input  class="digits" type="text" size="30" alt="请输入数字" name="eMobile"/>
 			</p>
+			<p>
+				<label>电话号码：</label>
+				<input type="text" size="30" name="ePhone" />
+			</p>
+			
 			<p>
 				<label>性别：</label>
 				<%-- 

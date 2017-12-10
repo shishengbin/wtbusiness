@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
 <div class="pageHeader">
-	<form onsubmit="return dwzSearch(this,'dialog');" action="${pageContext.request.contextPath}/sys/findAllUsersByPage?param=lookup" method="post">
+	<form onsubmit="return dwzSearch(this,'dialog');" action="${pageContext.request.contextPath}/sys/lookUpUserList" method="post">
 	<div class="searchBar">
 		<table class="searchContent" style="float: left;">
 			<tr>
@@ -20,15 +20,18 @@
 </div>
 <div class="pageContent">
 	<div class="panelBar">
+		<!--  
 		<ul class="toolBar">
 			<li><a class="add" href="${pageContext.request.contextPath}/sys/preadduser" target="dialog" title="添加帐号"  width="720" height="400"><span>添加</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/sys/searchSysUserByUId/{sid_user}" target="dialog" title="修改账号" width="720" height="400"><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
+		-->
 	</div>
 	<table class="table" width="100%" layoutH="112">
 		<thead>
 			<tr>
+				<th width="20%">账号ID</th>
 				<th width="20%">登录账号</th>
 				<th width="15%">账号密码</th>
 				<th width="20%">账号描述</th>
@@ -41,8 +44,9 @@
 		<tbody>
 			<c:forEach items="${userList}" var="user">
 					<tr target="sid_user" rel="${user.id}">
+						<td>${user["id"]}</td>
 						<td>${user["username"]}</td>
-						<td>${user["username"]}</td>
+						<td>${user["userpass"]}</td>
 						<td>${user["userremark"] }</td>
 						<td>${user["userstatus"]==1?"启用":"禁用" }</td>
 						<td><fmt:formatDate value="${user.createTime }" pattern="yyyy-MM-dd HH:mm"/></td>

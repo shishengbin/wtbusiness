@@ -48,6 +48,10 @@ public interface UserDao extends ParentDao<SysUser, Long> {
 	public int updateUserById(Long uid);
 	
 	public void updateUserWithUse(Long uid);
+	//-----sss-----
+	public List<SysUser> findAllUserByPageWithLookUp(Map<String, Object> map);
+	public Long findCountByParamWithLookUp(Map<String, Object> map);
+
 
 
 }

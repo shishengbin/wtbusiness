@@ -22,6 +22,9 @@ request.setAttribute("action",request.getParameter("action"));
 				<option value="40">40</option>
 				<option value="50">50</option>
 			</select>
+			<script>
+        		$("select[name='numPerPage']").val('${numPerPage}');
+      		</script>
 			<span>条，共${totalCount}条</span>
 		</div>
 		<div class="pagination" targetType="navTab" totalCount="${totalCount}" numPerPage="${numPerPage}" pageNumShown="10" currentPage="${curPage}"></div>

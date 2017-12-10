@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.github.pagehelper.PageInfo;
 import com.sy.modules.entity.sys.SysEmployee;
 import com.sy.modules.entity.sys.SysUser;
@@ -51,10 +50,14 @@ public class SysEmployeeController {
 	public String saveEmployee(Model model,HttpServletRequest request,@ModelAttribute SysEmployee em){
 		int flag=-1;
 		String sysuserId=request.getParameter("user.id");
+		SysUser user= SessionUtil.getLoginUser(request);
 		if(null!= em){
 			em.setCreateTime(new Date());
 			if(StringUtils.isNotBlank(sysuserId)){
 				em.setSysUserId(Integer.parseInt(sysuserId));
+			}
+			if(null !=user && StringUtils.isNotBlank(user.getUsername())){
+				em.setCreateName(user.getUsername());
 			}
 			flag=emservice.saveEmployee(em);
 		}
@@ -95,14 +98,21 @@ public class SysEmployeeController {
 	//修改员工
 	@RequestMapping(value="/saveEmployeeByUpd")
 	@ResponseBody
-	public String saveEmployeeByUpd(Model model, @ModelAttribute SysEmployee emp,HttpServletRequest request){
+	public String saveEmployeeByUpd(Model model, @ModelAttribute SysEmployee em,HttpServletRequest request){
 		int flag=-1;
-		if(null != emp){
-			flag=emservice.updateEmployee(emp);
+		String sysuserId=request.getParameter("user.id");
+		SysUser user= SessionUtil.getLoginUser(request);
+		if(null != em){
+			if(StringUtils.isNotBlank(sysuserId)){
+				em.setSysUserId(Integer.parseInt(sysuserId));
+			}
+			if(null !=user && StringUtils.isNotBlank(user.getUsername())){
+				em.setUpdateName(user.getUsername());
+			}
+			flag=emservice.updateEmployee(em);
 		}
 		if(flag>0){
-			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_UPDATE_SUCCESS,
-					Constants.REL_EMPLOYEEMANAGE,null,Constants.CLOSECURRENT,"sys/findAllEmployees");
+			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_UPDATE_SUCCESS,Constants.REL_EMPLOYEEMANAGE,null,Constants.CLOSECURRENT,"sys/findAllEmployees");
 		}else{
 			return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_UPDATE_FAIL,null,null,null,null);
 		}

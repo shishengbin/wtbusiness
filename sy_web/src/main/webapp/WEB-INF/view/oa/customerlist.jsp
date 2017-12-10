@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
+<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/oa/findAllCustomersByPage">
+    <input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value="${customlist.pageSize }"/><!-- 每页显示多少条 -->
+</form>
 <div class="pageHeader">
 	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/oa/findAllCustomersByPage" method="post">
 	<div class="searchBar">
@@ -93,7 +97,7 @@
 	<div class="panelBar">
 		<div class="pages">
 			<span>显示</span>
-			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" showvalue="${numPerPage}">
+			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
 			<option value="10">10</option>
 				<option value="15">15</option>
 				<option value="20">20</option>
@@ -101,6 +105,9 @@
 				<option value="40">40</option>
 				<option value="50">50</option>
 			</select>
+			<script>
+        		$("select[name='numPerPage']").val('${customlist.pageSize}');
+      		</script>
 			<span>条，共${customlist.total}条</span>
 		</div>
 		 <div class="pagination" targetType="navTab" totalCount="${customlist.total}" numPerPage="${customlist.pageSize}"

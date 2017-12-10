@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.sy.commons.entity.HResult;
 import com.sy.modules.entity.sys.Payment;
 import com.sy.modules.entity.sys.SysUser;
@@ -109,9 +108,7 @@ public class SysUserController extends PageSet {
 				//map.put("user", user);
 			}
 		}
-		
-		return JsonUtil.transferJsonResponse(Constants.SUCCESS, Constants.MSG_ADD_SUCCESS, Constants.REL_USERMANAGER, null,
-				Constants.CLOSECURRENT, "sys/findAllUsersByPage");
+		return JsonUtil.transferJsonResponse(Constants.SUCCESS, Constants.MSG_ADD_SUCCESS, Constants.REL_USERMANAGER, null,Constants.CLOSECURRENT, "sys/findAllUsersByPage");
 	}
 	
 	/**
@@ -250,7 +247,7 @@ public class SysUserController extends PageSet {
 		// 总数
 		long totalNum = userservice.findCountByParam(map);
 		request.setAttribute("userList", userList);
-		request.setAttribute("count", totalNum);
+		request.setAttribute("totalCount", totalNum);
 		request.setAttribute("username", userName);
 		if(StringUtils.isNotBlank(param)){
 			return "sys/lookUpUserList";
@@ -260,7 +257,7 @@ public class SysUserController extends PageSet {
 	
 	@RequestMapping(value = "/lookUpUserList")
 	public String lookUpUserList(HttpServletRequest request) {
-		log.info("entering...SysUserController...findAllUsersByPage()");
+		log.info("entering...SysUserController...lookUpUserList()");
 		// 用户名
 		String userName = request.getParameter("username");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -269,12 +266,13 @@ public class SysUserController extends PageSet {
 		//当前默认为1
 		map.put("parentId", 1);
 		map.put("eStatus", 0);
-		List<SysUser> userList = userservice.findAllUserByPage(map);
+		List<SysUser> userList = userservice.findAllUserByPageWithLookUp(map);
 		// 总数
-		long totalNum = userservice.findCountByParam(map);
+		long totalNum = userservice.findCountByParamWithLookUp(map);
 		request.setAttribute("userList", userList);
-		request.setAttribute("count", totalNum);
+		request.setAttribute("totalCount", totalNum);
 		request.setAttribute("username", userName);
+		log.info("leaving...SysUserController...lookUpUserList()");
 		return "sys/lookUpUserList";
 	}
 

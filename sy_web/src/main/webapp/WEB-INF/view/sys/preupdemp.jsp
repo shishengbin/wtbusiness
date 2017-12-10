@@ -19,13 +19,14 @@
 				<input type="text" size="30" name="eEnName" value="${emp['eEnName'] }"/>
 			</p>
 			<p>
-				<label>电话号码：</label>
-				<input type="text" size="30" name="ePhone" value="${emp['ePhone'] }"/>
-			</p>
-			<p>
 				<label>手机号码：</label>
 				<input  class="digits" type="text" size="30" alt="请输入数字" name="eMobile"	value="${emp['eMobile'] }"/>
 			</p>
+			<p>
+				<label>电话号码：</label>
+				<input type="text" size="30" name="ePhone" value="${emp['ePhone'] }"/>
+			</p>
+			
 			<p>
 				<label>性别：</label>
 				<%-- 
@@ -70,7 +71,7 @@
 			</p>
 			<p>
 				<label>选择账号：</label>
-				<input id="inputOrg1" name="user.id" value="" type="hidden"/>
+				<input id="inputOrg1" name="user.id" value="${emp['sysUserId']}" type="hidden" />
 				<input id="inputOrg1" name="user.orgName" value="" type="hidden"/>
 				<input type="text" readonly="readonly"  name="user.userName" value="${emp['sysUserId'] }"/>
 				<a class="btnLook" href="sys/lookUpUserList" lookupGroup="user">查找带回</a>		

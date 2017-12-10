@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
+<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/sys/findAllRoles">
+    <input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value="${rolelist.pageSize }"/><!-- 每页显示多少条 -->
+</form>
 <div class="pageHeader">
 	<form onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/sys/findAllRoles" method="post">
 	<div class="searchBar">
@@ -62,6 +66,9 @@
 				<option value="40">40</option>
 				<option value="50">50</option>
 			</select>
+			<script>
+        		$("select[name='numPerPage']").val('${rolelist.pageSize}');
+      		</script>
 			<span>条，共${rolelist.total+1}条</span>
 		</div>
 		 <div class="pagination" targetType="navTab" totalCount="${rolelist.total}" numPerPage="${rolelist.pageSize}"

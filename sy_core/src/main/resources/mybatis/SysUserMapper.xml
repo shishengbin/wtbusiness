@@ -84,6 +84,40 @@
 			limit #{lowerLimit},#{upperLimit}
 		</if>
 	</select>
+	
+	
+	
+	<select id="findAllUserByPageWithLookUp" parameterType="map" resultType="SysUser"
+		useCache="false" flushCache="true">
+		select
+			su.user_id as id,
+			su.user_name as username,
+			su.user_pass as userpass,
+			su.role_id as roleId,
+			su.parent_id as parentid,
+			su.user_status as userstatus,
+			su.user_remark as userremark,
+			su.create_name as createName,
+			su.create_time as createTime,
+			su.update_name as updateName,
+			su.update_time as updateTime,
+			su.del_status as delStatus
+		FROM
+		sys_user as su
+		where 1=1 and su.user_status =1 and del_status=1
+		<if test="userName!=null">
+			and su.user_name like   CONCAT('%','${userName}','%')
+		</if>
+		<if test="parentId!=null">
+			and su.parent_id =#{parentId}
+		</if>
+		<if test="eStatus!=null">
+			and su.e_status =#{eStatus}
+		</if>
+		<if test="lowerLimit!=null and upperLimit != null">
+			limit #{lowerLimit},#{upperLimit}
+		</if>
+	</select>
 
 <select id="findById" parameterType="long" resultType="SysUser">
 		select
@@ -125,12 +159,32 @@
 	</select>
 	
 	<select id="findCountByParam" parameterType="map" resultType="long">
-		select count(*) from sys_user where 1=1 and parent_id=#{parentId} and del_status=1
+		select count(*) from sys_user where 1=1  and del_status=1
 		<if test="userName!=null">
 			and user_name like CONCAT('%','${userName}','%')
 		</if>
 		<if test="roleId!=null">
 			and role_id = #{roleId}
+		</if>
+		<if test="parentId!=null">
+			and parent_id =#{parentId}
+		</if>
+		<if test="eStatus!=null">
+			and e_status =#{eStatus}
+		</if>
+	</select>
+	
+	
+	<select id="findCountByParamWithLookUp" parameterType="map" resultType="long">
+		select count(*) from sys_user where 1=1 and user_status=1  and del_status=1
+		<if test="userName!=null">
+			and user_name like CONCAT('%','${userName}','%')
+		</if>
+		<if test="roleId!=null">
+			and role_id = #{roleId}
+		</if>
+		<if test="parentId!=null">
+			and parent_id =#{parentId}
 		</if>
 		<if test="eStatus!=null">
 			and e_status =#{eStatus}
