@@ -3,10 +3,7 @@
 
 <form id="pagerForm" method="post" action="${pageContext.request.contextPath}/sys/findAllEmployees">
     <input type="hidden" name="pageNum" value="1"/>
-		<input type="hidden" name="numPerPage" value="${numPerPage }" id="numPerPage"/><!-- 每页显示多少条 -->
-    <input type="hidden" name="pageSize" value="${model.numPerPage}"/>
-    <input type="hidden" name="orderField" value="${param.orderField}"/>
-    <input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="numPerPage" value="${emlist.pageSize }"/><!-- 每页显示多少条 -->
 </form>
 
 <div class="pageHeader">
