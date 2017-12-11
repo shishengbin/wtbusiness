@@ -31,7 +31,7 @@
 	<table class="table" width="100%" layoutH="112">
 		<thead>
 			<tr>
-				<th width="20%">账号ID</th>
+				<th width="8%">账号ID</th>
 				<th width="20%">登录账号</th>
 				<th width="15%">账号密码</th>
 				<th width="20%">账号描述</th>
