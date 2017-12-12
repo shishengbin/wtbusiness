@@ -34,6 +34,7 @@
 				<th width="20%">登录账号</th>
 				<th width="15%">账号密码</th>
 				<th width="20%">账号描述</th>
+				<th width="20%">所属员工</th>
 				<th width="10%">是否启用</th>
 				<th width="10%">创建时间</th>
 				<th width="10%">最后修改时间</th>
@@ -46,6 +47,7 @@
 						<td>${user["username"]}</td>
 						<td>${user["userpass"]}</td>
 						<td>${user["userremark"] }</td>
+						<td>${user.emp["eName"] }</td>
 						<td>${user["userstatus"]==1?"启用":"禁用" }</td>
 						<td><fmt:formatDate value="${user.createTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td><fmt:formatDate value="${user.updateTime }" pattern="yyyy-MM-dd HH:mm"/></td>

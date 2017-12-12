@@ -27,6 +27,8 @@ public class SysUser extends ParentEntity {
 	private Keyword key;
 	private Integer delStatus;
 	private Integer eStatus;
+	private SysEmployee emp;
+	
 	public SysUser() {
 	}
 
@@ -131,6 +133,14 @@ public class SysUser extends ParentEntity {
 
 	public void seteStatus(Integer eStatus) {
 		this.eStatus = eStatus;
+	}
+
+	public SysEmployee getEmp() {
+		return emp;
+	}
+
+	public void setEmp(SysEmployee emp) {
+		this.emp = emp;
 	}
 
 	public String toString(){

@@ -25,6 +25,12 @@
 			<id column="company_id" property="id" />
 			<result column="company_name" property="companyname" />
 		</association>
+		<association property="emp"	javaType="com.sy.modules.entity.sys.SysEmployee" resultMap="com.sy.modules.dao.sys.SysEmployeeMapper.BaseResultMap">
+			<id column="e_id" property="eId" jdbcType="INTEGER" />
+    		<result column="sys_user_id" property="sysUserId" jdbcType="INTEGER" />
+    		<result column="e_number" property="eNumber" jdbcType="VARCHAR" />
+    		<result column="e_name" property="eName" jdbcType="VARCHAR" />
+		</association>
 	</resultMap>
 
 	<select id="queryById" resultMap="resultListUser" parameterType="Long">
@@ -56,24 +62,13 @@
 		where su.user_id=#{id}
 	</select>
 	
-	<select id="findAllUserByPage" parameterType="map" resultType="SysUser"
+	<select id="findAllUserByPage" parameterType="map" resultMap="resultListUser"
 		useCache="false" flushCache="true">
 		select
-			su.user_id as id,
-			su.user_name as username,
-			su.user_pass as userpass,
-			su.role_id as roleId,
-			su.parent_id as parentid,
-			su.user_status as userstatus,
-			su.user_remark as userremark,
-			su.create_name as createName,
-			su.create_time as createTime,
-			su.update_name as updateName,
-			su.update_time as updateTime,
-			su.del_status as delStatus
+			su.*,se.*
 		FROM
-		sys_user as su
-		where 1=1 and del_status=1
+		sys_user as su LEFT JOIN sys_employee as se ON se.sys_user_id = su.user_id
+		where 1=1 and su.del_status=1
 		<if test="userName!=null">
 			and su.user_name like   CONCAT('%','${userName}','%')
 		</if>
@@ -107,7 +102,7 @@
 			su.del_status as delStatus
 		FROM
 		sys_user as su
-		where 1=1 and su.user_status =1 and del_status=1
+		where 1=1 and su.user_status =1 and su.del_status=1
 		<if test="userName!=null">
 			and su.user_name like   CONCAT('%','${userName}','%')
 		</if>
