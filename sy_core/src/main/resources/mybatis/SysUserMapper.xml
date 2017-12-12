@@ -21,7 +21,10 @@
 		<result property="delStatus" column="del_status" />
 		<result property="eStatus" column="e_status" />
 		<association property="key"	resultMap="com.sy.modules.dao.agt.KeywordDao.keyResult"></association>
-		<association property="company"	resultMap="com.sy.modules.dao.sys.CompanyInfoDao.comResult"></association>
+		<association property="company"	javaType="com.sy.modules.entity.sys.CompanyInfo" resultMap="com.sy.modules.dao.sys.CompanyInfoDao.comResult">
+			<id column="company_id" property="id" />
+			<result column="company_name" property="companyname" />
+		</association>
 	</resultMap>
 
 	<select id="queryById" resultMap="resultListUser" parameterType="Long">
@@ -140,22 +143,12 @@
 		sys_user as su
 		where 1=1 and su.user_id=#{id}
 	</select>
-	<select id="findUserByName" parameterType="String" resultType="SysUser">
+	<select id="findUserByName" parameterType="String" resultMap="resultListUser">
 		select
-			user_id as id,
-			user_name as username,
-			user_pass as userpass,
-			parent_id as parentid,
-			role_id as roleId,
-			user_status as userstatus,
-			user_remark as userremark,
-			create_name as createName,
-			create_time as createTime,
-			update_name as updateName,
-			update_time as updateTime,
-			del_status as delStatus
-		from sys_user
-		where user_name=#{username} and user_status=1 and del_status =1
+			su.*,sc.*
+		from sys_user as su RIGHT  JOIN sys_user_company as suc on suc.uc_id=su.user_id
+								   LEFT   JOIN sys_company as sc on sc.company_id =suc.company_id
+		where su.user_name=#{username} and su.user_status=1 and su.del_status =1
 	</select>
 	
 	<select id="findCountByParam" parameterType="map" resultType="long">
