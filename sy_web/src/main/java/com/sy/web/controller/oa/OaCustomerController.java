@@ -85,6 +85,21 @@ public class OaCustomerController {
 		}
 	}
 
+	@RequestMapping(value = "/{cid}/returnSeaCustomer")
+	@ResponseBody
+	public String returnSeaCustomer(@PathVariable Integer cid,HttpServletRequest request) {
+		int flag = -1;
+		if (null != cid && cid > 0) {
+			OaCustomer custom = new OaCustomer();
+			custom.setcId(cid.longValue());
+			flag = customerservice.returnSeaCustomer(custom);
+		}
+		if (flag > 0) {
+			return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_RETURN_SEA_SUCCESS, Constants.REL_CUSTOMERMANAGER,null, null, null);
+		} else {
+			return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_RETURN_SEA_FAIL, Constants.REL_CUSTOMERMANAGER,null, null, null);
+		}
+	}
 	@RequestMapping(value = "/findCustomerById/{cid}")
 	public String searchSysUserByUId(@PathVariable("cid") Integer cid,Model model, HttpServletRequest request) {
 		if (null != cid) {

@@ -41,6 +41,11 @@ public class OaCustomerService {
 		return customermapper.updateByPrimaryKeySelective(custom);
 	}
 
+	//return sea
+	public int returnSeaCustomer(OaCustomer custom){
+		custom.setSeaStatus(Constants.DELSTATE.byteValue());
+		return customermapper.updateByPrimaryKeySelective(custom);
+	}
 	// find customer by id
 	public OaCustomer findCustomer(Integer cId) {
 		return customermapper.selectByPrimaryKey(cId.longValue());

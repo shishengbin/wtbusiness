@@ -32,6 +32,7 @@
     <result column="c_site" jdbcType="VARCHAR" property="cSite" />
     <result column="c_mail" jdbcType="VARCHAR" property="cMail" />
     <result column="del_status" jdbcType="TINYINT" property="delStatus" />
+    <result column="sea_status" jdbcType="TINYINT" property="seaStatus" />
     <result column="create_name" jdbcType="VARCHAR" property="createName" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_name" jdbcType="VARCHAR" property="updateName" />
@@ -110,7 +111,7 @@
     -->
     c_id, c_name, sys_user_id, sys_user_name,c_lucky_day,c_hotel,c_mobile, c_phone, c_area, c_linkman, c_birth, 
     c_qq, c_weibo, c_wechat, c_trde, c_job, c_address, c_resource, c_status, c_remark, 
-    c_scale, c_time, c_capital, c_site, c_mail, del_status, create_name, create_time, 
+    c_scale, c_time, c_capital, c_site, c_mail, del_status,sea_status, create_name, create_time, 
     update_name, update_time
   </sql>
   <select id="selectByExample" parameterType="com.sy.modules.entity.oa.OaCustomerExample" resultMap="BaseResultMap">
@@ -274,6 +275,9 @@
       <if test="delStatus != null">
         del_status,
       </if>
+       <if test="seaStatus != null">
+        sea_status,
+      </if>
       <if test="createName != null">
         create_name,
       </if>
@@ -363,6 +367,9 @@
       </if>
       <if test="delStatus != null">
         #{delStatus,jdbcType=TINYINT},
+      </if>
+      <if test="seaStatus != null">
+        #{seaStatus,jdbcType=TINYINT},
       </if>
       <if test="createName != null">
         #{createName,jdbcType=VARCHAR},
@@ -605,6 +612,9 @@
       </if>
       <if test="delStatus != null">
         del_status = #{delStatus,jdbcType=TINYINT},
+      </if>
+      <if test="seaStatus != null">
+        sea_status = #{seaStatus,jdbcType=TINYINT},
       </if>
       <if test="createName != null">
         create_name = #{createName,jdbcType=VARCHAR},

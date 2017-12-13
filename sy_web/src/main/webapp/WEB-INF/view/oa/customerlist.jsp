@@ -31,6 +31,7 @@
 			<li class="line">line</li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllLinkmansByPage/{sid_user}" target="navTab"	rel="020" title="查看联系人" ><span>查看联系人</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findAllRecordsByPage/{sid_user}" target="navTab"	rel="040" title="查看更进记录" ><span>更进记录</span></a></li>
+			<li><a class="edit" href="${pageContext.request.contextPath}/oa/{sid_user}/returnSeaCustomer" target="ajaxTodo"	rel="041" title="确认退回公海吗?" ><span>退回公海</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="112">

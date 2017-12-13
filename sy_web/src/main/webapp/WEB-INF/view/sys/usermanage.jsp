@@ -31,10 +31,10 @@
 		<thead>
 			<tr>
 				<th width="8%">账号ID</th>
-				<th width="20%">登录账号</th>
-				<th width="15%">账号密码</th>
+				<th width="15%">登录账号</th>
+				<th width="12%">账号密码</th>
 				<th width="20%">账号描述</th>
-				<th width="20%">所属员工</th>
+				<th width="12%">所属员工</th>
 				<th width="10%">是否启用</th>
 				<th width="10%">创建时间</th>
 				<th width="10%">最后修改时间</th>

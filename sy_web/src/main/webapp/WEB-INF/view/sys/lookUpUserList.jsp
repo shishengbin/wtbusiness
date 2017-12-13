@@ -56,20 +56,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="panelBar">
-		<div class="pages">
-			<span>显示</span>
-			<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" showvalue="${numPerPage }">
-			<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="20">20</option>
-				<option value="30">30</option>
-				<option value="40">40</option>
-				<option value="50">50</option>
-			</select>
-			<span>条，共${count}条</span>
-		</div>
-		 <div class="pagination" targetType="navTab" totalCount="${count}" numPerPage="${numPerPage}"
-			pageNumShown="${pageSize}" currentPage="${curPage}"></div>
-    </div>
+	<c:import url="../ws/pageControl/paging.jsp" >
+		<c:param name="action" value="${pageContext.request.contextPath}/sys/lookUpUserList"></c:param>
+	</c:import>
 </div>

@@ -78,6 +78,7 @@
 		<if test="eStatus!=null">
 			and su.e_status =#{eStatus}
 		</if>
+		order by su.user_id asc
 		<if test="lowerLimit!=null and upperLimit != null">
 			limit #{lowerLimit},#{upperLimit}
 		</if>
