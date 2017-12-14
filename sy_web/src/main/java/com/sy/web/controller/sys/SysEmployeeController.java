@@ -53,6 +53,7 @@ public class SysEmployeeController {
 		SysUser user= SessionUtil.getLoginUser(request);
 		if(null!= em){
 			em.setCreateTime(new Date());
+			em.setUpdateTime(new Date());
 			if(StringUtils.isNotBlank(sysuserId)){
 				em.setSysUserId(Integer.parseInt(sysuserId));
 			}

@@ -41,9 +41,18 @@ public class OaCustomerController {
 	// prepare add
 	@RequestMapping(value = "/precreatecustomer", method = { RequestMethod.GET,RequestMethod.POST })
 	public String precreatecustomer(Model model,HttpServletRequest request) {
+		String param=request.getParameter("param");
 		SysUser user = SessionUtil.getLoginUser(request);
 		if(null !=user && StringUtils.isNotBlank(user.getUsername())) {
 			model.addAttribute("userName", user.getUsername());
+		}
+		if(StringUtils.isNotBlank(param)) {
+			if("sea".equals(param)) {
+				model.addAttribute("action","oa/saveCustomerInSea");
+			}
+			if("cus".equals(param)) {
+				model.addAttribute("action","oa/saveCustomer");
+			}
 		}
 		return "oa/addcustomer";
 	}
@@ -58,6 +67,7 @@ public class OaCustomerController {
 			if (StringUtils.isNotBlank(user.getUsername())) {
 				customer.setSysUserId(user.getId());
 				customer.setSysUserName(user.getUsername());
+				customer.setSeaStatus(Constants.ISDELSTATE.byteValue());
 			}
 			flag = customerservice.saveCustomer(customer);
 		}
@@ -68,6 +78,8 @@ public class OaCustomerController {
 		}
 	}
 
+	
+	
 	// delete customer
 	@RequestMapping(value = "/{cid}/deleteCustomer")
 	@ResponseBody
@@ -101,7 +113,7 @@ public class OaCustomerController {
 		}
 	}
 	@RequestMapping(value = "/findCustomerById/{cid}")
-	public String searchSysUserByUId(@PathVariable("cid") Integer cid,Model model, HttpServletRequest request) {
+	public String findCustomerById(@PathVariable("cid") Integer cid,Model model, HttpServletRequest request) {
 		if (null != cid) {
 			OaCustomer customer = customerservice.findCustomer(cid);
 			model.addAttribute("customer", customer);
@@ -123,5 +135,97 @@ public class OaCustomerController {
 			return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_UPDATE_FAIL, null, null, null, null);
 		}
 	}
+	
+	//-------------------------------------sea--customer---------------------------------------------------------------
+	
+	// find all customers by page in sea
+		@RequestMapping(value = "/findAllCustomersByPageInSea", method = {RequestMethod.GET, RequestMethod.POST })
+		public String findAllCustomersByPageInSea(Model model,@ModelAttribute OaCustomerVo customVo, HttpServletRequest request) {
+			SysUser user = SessionUtil.getLoginUser(request);
+			if (null != user) {
+				customVo.setSysUserId(user.getParentid());
+			}
+			PageInfo<OaCustomer> customlist = customerservice.findAllCustomersByPageInSea(customVo);
+			model.addAttribute("customlist", customlist);
+			return "oa/seacustomerlist";
+		}
+	
+	
+		// save customer info in sea
+		@RequestMapping(value = "/saveCustomerInSea", method = { RequestMethod.GET,RequestMethod.POST })
+		@ResponseBody
+		public String saveCustomerInSea(Model model, HttpServletRequest request,@ModelAttribute OaCustomer customer) {
+			int flag = -1;
+			SysUser user = SessionUtil.getLoginUser(request);
+			if (null != customer) {
+				if (StringUtils.isNotBlank(user.getUsername())) {
+					customer.setSysUserId(user.getId());
+					customer.setSysUserName(user.getUsername());
+					customer.setSeaStatus(Constants.DELSTATE.byteValue());
+				}
+				flag = customerservice.saveCustomer(customer);
+			}
+			if (flag > 0) {
+				return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_ADD_SUCCESS, Constants.REL_SEACUSTOMERMANAGE,null, Constants.CLOSECURRENT, "oa/findAllCustomersByPageInSea");
+			} else {
+				return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_ADD_FAIL, null, null, null, null);
+			}
+		}
+	
+		
+		// delete customer
+		@RequestMapping(value = "/{cid}/deleteCustomerInSea")
+		@ResponseBody
+		public String deleteCustomerInSea(@PathVariable Integer cid,HttpServletRequest request) {
+			int flag = -1;
+			if (null != cid && cid > 0) {
+				OaCustomer custom = new OaCustomer();
+				custom.setcId(cid.longValue());
+				flag = customerservice.deleteCustomer(custom);
+			}
+			if (flag > 0) {
+				return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_DEL_SUCCESS, Constants.REL_SEACUSTOMERMANAGE,null, null, null);
+			} else {
+				return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_DEL_FAIL, Constants.REL_SEACUSTOMERMANAGE,null, null, null);
+			}
+		}
+	
+	
+		@RequestMapping(value = "/findCustomerByIdInSea/{cid}")
+		public String findCustomerByIdInSea(@PathVariable("cid") Integer cid,Model model, HttpServletRequest request) {
+			if (null != cid) {
+				OaCustomer customer = customerservice.findCustomer(cid);
+				model.addAttribute("customer", customer);
+			}
+			return "oa/preupdcustomerinsea";
+		}
+	
+		
+		// update customer
+		@RequestMapping(value = "/saveCustomerByUpdInSea")
+		@ResponseBody
+		public String saveCustomerByUpdInSea(Model model,@ModelAttribute OaCustomer customer, HttpServletRequest request) {
+			int flag = -1;
+			if (null != customer) {
+				flag = customerservice.updateCustomer(customer);
+			}
+			if (flag > 0) {
+				return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_UPDATE_SUCCESS, Constants.REL_SEACUSTOMERMANAGE,null, Constants.CLOSECURRENT, "oa/findAllCustomersByPageInSea");
+			} else {
+				return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_UPDATE_FAIL, null, null, null, null);
+			}
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

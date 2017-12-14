@@ -21,6 +21,16 @@ public class OaCustomerService {
 	public PageInfo<OaCustomer> findAllCustomersByPage(OaCustomerVo customerVo) {
 		List<OaCustomer> list = new ArrayList<OaCustomer>(0);
 		if (null != customerVo) {
+			customerVo.setSeaStatus(Constants.ISDELSTATE);
+			list = customermapper.selectByExample(customerVo.toExample());
+		}
+		return new PageInfo<OaCustomer>(list);
+	}
+	// find all customers by page in sea
+	public PageInfo<OaCustomer> findAllCustomersByPageInSea(OaCustomerVo customerVo) {
+		List<OaCustomer> list = new ArrayList<OaCustomer>(0);
+		if (null != customerVo) {
+			customerVo.setSeaStatus(Constants.DELSTATE);//0在公海
 			list = customermapper.selectByExample(customerVo.toExample());
 		}
 		return new PageInfo<OaCustomer>(list);

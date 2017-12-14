@@ -25,7 +25,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${pageContext.request.contextPath}/oa/precreatecustomer" target="navTab" title="添加客户" width="820" height="400" ><span>添加</span></a></li>
+			<li><a class="add" href="${pageContext.request.contextPath}/oa/precreatecustomer?param=cus" target="navTab" title="添加客户" width="820" height="400" ><span>添加</span></a></li>
 			<li><a class="delete" href="${pageContext.request.contextPath}/oa/{sid_user}/deleteCustomer" target="ajaxTodo" title="确认删除吗?" rel="page2"><span>删除</span></a></li>
 			<li><a class="edit" href="${pageContext.request.contextPath}/oa/findCustomerById/{sid_user}" target="navTab" title="修改客户"><span>修改</span></a></li>
 			<li class="line">line</li>
@@ -42,7 +42,7 @@
 				<th width="8%">主联系人</th>
 				<th width="12%">酒店</th>
 				<th width="8%">客户标签</th>
-				<th width="8%">客户所有人</th>
+				<th width="8%">客户创建人</th>
 				<th width="8%">客户状态</th>
 				<th width="10%">创建时间</th>
 				<th width="10%">修改时间</th>

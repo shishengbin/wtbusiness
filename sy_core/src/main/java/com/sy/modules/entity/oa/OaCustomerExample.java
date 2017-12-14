@@ -1709,6 +1709,11 @@ public class OaCustomerExample {
             addCriterion("del_status =", value, "delStatus");
             return (Criteria) this;
         }
+        
+        public Criteria andSeaStatusEqualTo(Byte value) {
+            addCriterion("sea_status =", value, "seaStatus");
+            return (Criteria) this;
+        }
 
         public Criteria andDelStatusNotEqualTo(Byte value) {
             addCriterion("del_status <>", value, "delStatus");

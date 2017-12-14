@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="../ws/pageControl/jstlImport.jsp" %>
 <div class="pageContent">
-	<form method="post" action="${pageContext.request.contextPath}/oa/saveCustomer" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+	<form method="post" action="${pageContext.request.contextPath}/${action}" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<p class="contentTitle">添加客户</p>
 		<div class="pageFormContent" layoutH="98">
 			<p>
