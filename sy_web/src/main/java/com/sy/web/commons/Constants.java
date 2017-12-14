@@ -61,6 +61,8 @@ public class Constants {
 	public static final String MSG_DEL_FAIL = "删除失败!";
 	public static final String MSG_RETURN_SEA_SUCCESS="退回公海成功!";
 	public static final String MSG_RETURN_SEA_FAIL="退回公海失败!";
+	public static final String MSG_RECEIVE_SUCCESS="领取成功!";
+	public static final String MSG_RECEIVE_FAIL="领取失败!";
 	public static final String MSG_DEL_FAIL_TIP="当前角色下有用户,无法删除!";
 	public static final String MSG_UPDATE_SUCCESS = "更新成功!";
 	public static final String MSG_UPDATE_FAIL = "更新失败!";

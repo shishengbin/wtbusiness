@@ -141,9 +141,8 @@
 	</select>
 	<select id="findUserByName" parameterType="String" resultMap="resultListUser">
 		select
-			su.*,sc.*
-		from sys_user as su RIGHT  JOIN sys_user_company as suc on suc.uc_id=su.user_id
-								   LEFT   JOIN sys_company as sc on sc.company_id =suc.company_id
+			su.*
+		from sys_user as su 
 		where su.user_name=#{username} and su.user_status=1 and su.del_status =1
 	</select>
 	

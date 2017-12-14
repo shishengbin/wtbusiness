@@ -67,5 +67,11 @@ public class OaCustomerService {
 		int num = customermapper.updateByPrimaryKeySelective(custom);
 		return num;
 	}
+	
+	//receive from sea
+		public int receiveCustomer(OaCustomer custom){
+			custom.setSeaStatus(Constants.ISDELSTATE.byteValue());
+			return customermapper.updateByPrimaryKeySelective(custom);
+		}
 
 }

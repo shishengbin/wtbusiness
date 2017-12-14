@@ -216,16 +216,27 @@ public class OaCustomerController {
 			}
 		}
 	
+	//receive customer
+		@RequestMapping(value = "/{cid}/receiveCustomer")
+		@ResponseBody
+		public String receiveCustomer(@PathVariable Integer cid,HttpServletRequest request) {
+			SysUser user = SessionUtil.getLoginUser(request);
+			int flag = -1;
+			if (null != cid && cid > 0) {
+				OaCustomer custom = new OaCustomer();
+				custom.setcId(cid.longValue());
+				if(null != user && null !=user.getId()){
+					custom.setSysUserId(user.getId());
+				}
+				flag = customerservice.receiveCustomer(custom);
+			}
+			if (flag > 0) {
+				return JsonUtil.transferJsonResponse(Constants.SUCCESS,Constants.MSG_RECEIVE_SUCCESS, Constants.REL_SEACUSTOMERMANAGE,null, null, null);
+			} else {
+				return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_RECEIVE_FAIL, Constants.REL_SEACUSTOMERMANAGE,null, null, null);
+			}
+		}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
