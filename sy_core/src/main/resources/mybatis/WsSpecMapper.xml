@@ -54,7 +54,7 @@
 		from ws_spec as ws
 		where 1=1
 		<if test="specname!=null">
-	     and ws.spec_name like "%"#{specname}"%"
+	     and ws.spec_name like   CONCAT('%','${specname}','%')
 	    </if>
 		<if test="lowerLimit!=null and upperLimit != null">
 			limit #{lowerLimit},#{upperLimit}
@@ -64,7 +64,7 @@
     <select id="findCount" parameterType="map" resultType="int">
 		select count(*) from ws_spec as ws where 1=1
 		<if test="specname!=null">
-	     and ws.spec_name like "%"#{specname}"%"
+	     and ws.spec_name like CONCAT('%','${specname}','%')
 	    </if>
 	</select>
     

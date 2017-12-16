@@ -40,11 +40,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-					<td>管理员</td>
-					<td>拥有所有权限</td>
-					<td>是</td>
-			</tr>
 			<c:forEach items="${rolelist.list}" var="role">
 					<tr target="sid_user" rel="${role['wtRId']}">
 						<td>${role["wtRName"] }</td>
@@ -69,7 +64,7 @@
 			<script>
         		$("select[name='numPerPage']").val('${rolelist.pageSize}');
       		</script>
-			<span>条，共${rolelist.total+1}条</span>
+			<span>条，共${rolelist.total}条</span>
 		</div>
 		 <div class="pagination" targetType="navTab" totalCount="${rolelist.total}" numPerPage="${rolelist.pageSize}"
 			pageNumShown="${rolelist.pageSize}" currentPage="${rolelist.pageNum}"></div>

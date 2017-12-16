@@ -61,6 +61,8 @@ public class WsMtProduct extends ParentEntity {
 	//产品状态
 	private Integer salesStatus;//1:正常 0：促销
 	
+	private Integer pDelStatus;
+	
 
 	public String getSpecname() {
 		return specname;
@@ -176,6 +178,14 @@ public class WsMtProduct extends ParentEntity {
 
 	public void setPicture(List<WsMtPicture> picture) {
 		this.picture = picture;
+	}
+
+	public Integer getpDelStatus() {
+		return pDelStatus;
+	}
+
+	public void setpDelStatus(Integer pDelStatus) {
+		this.pDelStatus = pDelStatus;
 	}
 
 	public void setPictureCount(Integer pictureCount) {

@@ -55,7 +55,7 @@
 			ws_pro_type AS wpt 
 		where 1=1 and wpt.parentid=0 and  wpt.uid=#{id}
 		<if test="tname!=null">
-		  and wpt.tname like "%"#{tname}"%"
+		  and wpt.tname like  CONCAT('%','${tname}','%')
 		</if>
 		<if test="lowerLimit!=null and upperLimit != null">
 				limit #{lowerLimit},#{upperLimit}
@@ -67,7 +67,7 @@
        FROM ws_pro_type AS wpt
 	   where 1=1 and wpt.parentid=0 and  wpt.uid=#{id}
 	   <if test="tname!=null">
-		  and wpt.tname like "%"#{tname}"%"
+		  and wpt.tname like  CONCAT('%','${tname}','%')
 		</if>
    </select>
    <!-- 一级分类是否存在二级分类 -->
@@ -93,7 +93,7 @@
 			ws_pro_type AS wpt 
 		where 1=1 and wpt.parentid=#{tid}
 		<if test="tname!=null">
-		  and wpt.tname like "%"#{tname}"%"
+		  and wpt.tname like CONCAT('%','${tname}','%')
 		</if>
 		<if test="lowerLimit!=null and upperLimit != null">
 				limit #{lowerLimit},#{upperLimit}
@@ -105,7 +105,7 @@
        FROM ws_pro_type AS wpt
 	   where 1=1 and wpt.parentid=#{tid}
 	   <if test="tname!=null">
-		  and wpt.tname like "%"#{tname}"%"
+		  and wpt.tname like CONCAT('%','${tname}','%')
 		</if>
    </select>  
 </mapper>

@@ -41,14 +41,14 @@ public class Constants {
 
 	// ws
 	public static final String REL_SELFMODULE = "page27";
-	public static final String REL_PHONEMANAGER = "page13";
-	public static final String REL_NEWSCLASS = "page16";
-	public static final String REL_NEWSMANAGER = "page17";
+	public static final String REL_PHONEMANAGER = "017";
+	public static final String REL_NEWSCLASS = "022";
+	public static final String REL_NEWSMANAGER = "023";
 	public static final String REL_LUNBOPIC = "page18";
-	public static final String REL_PRODUCTTYPE = "page19";
-	public static final String REL_PRODUCTMANAGER = "page20";
-	public static final String REL_SUPPLIERMANAGER = "page26";
-	public static final String REL_SPECMANAGER = "page30";
+	public static final String REL_PRODUCTTYPE = "026";
+	public static final String REL_PRODUCTMANAGER = "027";
+	public static final String REL_SUPPLIERMANAGER = "032";
+	public static final String REL_SPECMANAGER = "025";
 
 	// 操作结果
 	public static final String MSG_LOGIN_FAIL = "登录失败!";
@@ -136,6 +136,7 @@ public class Constants {
 		}
 	}
 
+	//七牛云服务器
 	public static final String DB_IMAGE_FILE = "http://obxgyv3if.bkt.clouddn.com";
 
 }

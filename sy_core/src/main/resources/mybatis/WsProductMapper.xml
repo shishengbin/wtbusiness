@@ -82,8 +82,8 @@
 	</update>
 	
 	<!-- 删除产品 >软删-->
-	<delete id="deleteById" parameterType="Long">
-		delete from ws_mt_product  where product_id=#{id}
+	<delete id="deleteById" parameterType="long">
+		update ws_mt_product set p_del_status=0 where  product_id=#{id}
 	</delete>
 	
 	<select id="findById" parameterType="Long" resultType="WsMtProduct">
@@ -221,7 +221,7 @@
 			                     LEFT JOIN ws_pro_type AS wpt ON wpt.tid=rwpt.ws_type_id 
 		                         LEFT join ws_supplier AS ws on wmp.supp_id=ws.supp_id
 		                         LEFT join ws_spec AS wsp on wmp.spec_id=wsp.spec_id 
-			where 1=1 
+			where 1=1 and wmp.p_del_status=1
 			 	<if test="userid!=null">
 		        and wup.user_id = #{userid}
 		       </if>

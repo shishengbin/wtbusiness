@@ -31,7 +31,7 @@ public class OaCustomerController {
 	public String findAllCustomersByPage(Model model,@ModelAttribute OaCustomerVo customVo, HttpServletRequest request) {
 		SysUser user = SessionUtil.getLoginUser(request);
 		if (null != user) {
-			customVo.setSysUserId(user.getParentid());
+			customVo.setSysUserId(user.getId().intValue());
 		}
 		PageInfo<OaCustomer> customlist = customerservice.findAllCustomersByPage(customVo);
 		model.addAttribute("customlist", customlist);
@@ -235,6 +235,13 @@ public class OaCustomerController {
 			} else {
 				return JsonUtil.transferJsonResponse(Constants.ERROR,Constants.MSG_RECEIVE_FAIL, Constants.REL_SEACUSTOMERMANAGE,null, null, null);
 			}
+		}
+		
+		@RequestMapping(value = "/findCustomerListByPage", method = {RequestMethod.GET, RequestMethod.POST })
+		public String findCustomerListByPage(Model model,@ModelAttribute OaCustomerVo customVo, HttpServletRequest request) {
+			PageInfo<OaCustomer> customlist = customerservice.findAllCustomersByPage(customVo);
+			model.addAttribute("customlist", customlist);
+			return "oa/customerlistform";
 		}
 	
 

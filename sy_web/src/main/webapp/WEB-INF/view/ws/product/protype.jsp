@@ -2,7 +2,7 @@
 <%@ include file="../pageControl/jstlImport.jsp" %>
 
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="ws/findOneAllByPage"  method="post">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="${pageContext.request.contextPath}/ws/findOneAllByPage"  method="post">
 		<input type="hidden" name="pageNum" value="1"  /><!-- 代表当前页 -->
 		<input type="hidden" name="numPerPage" value="${numPerPage }" id="numPerPage"/><!-- 每页显示多少条 -->
 		<input type="hidden" value="${id}" name="id">
@@ -48,5 +48,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<c:import url="../pageControl/paging.jsp" />
+	<c:import url="../pageControl/paging.jsp" >
+		<c:param name="action" value="ws/findOneAllByPage"></c:param>
+	</c:import>
 </div>

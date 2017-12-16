@@ -163,7 +163,9 @@ public class WsProductClassOneController extends PageSet {
 		Map<String,Object> map=new HashMap<String,Object>();
 		this.setPagination(request, map);
 		map.put("id", uid);
-		map.put("tname", tname);
+		if(StringUtils.isNotBlank(tname)){
+			map.put("tname", tname);
+		}
 		List<WsProType> parentTypeList=wsproservice.findAllParentTypesByPage(map);
 		//总数
 		long totalNum=wsproservice.findAllParentTypeCount(map);

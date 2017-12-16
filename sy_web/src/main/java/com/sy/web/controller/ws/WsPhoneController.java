@@ -107,6 +107,7 @@ public class WsPhoneController extends PageSet{
 	 */
 	@RequestMapping(value="/showphone")
 	public String app4(HttpServletRequest request,HttpServletResponse response){
+		log.info("------entering---method:WsPhoneController---app4-----------");
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("userid",SessionUtil.getUserId(request));
 		String name = request.getParameter("name");
@@ -119,6 +120,7 @@ public class WsPhoneController extends PageSet{
 		request.setAttribute("phoneList",list1);
 		request.setAttribute("totalCount",list.size());
 		request.setAttribute("name",name);
+		log.info("------leaving---method:WsPhoneController---app4-------------");
 		return "ws/phone/phoneNumber";
 	}
 }
