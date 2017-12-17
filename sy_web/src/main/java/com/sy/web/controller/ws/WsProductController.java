@@ -84,14 +84,23 @@ public class WsProductController extends PageSet {
 		StringBuffer sb = DataTool.stringConnect("-",province,city1,city2);
 		product.setProductCity(sb.toString());
         //规格id
-		long specid=Long.valueOf(request.getParameter("specname"));
+		String spec=request.getParameter("specname");
+		Long specid=null;
+		if(StringUtils.isNotBlank(spec)){
+			specid=Long.valueOf(spec);
+		}
 		//供应商id
-		long supp_id=Long.valueOf(request.getParameter("supplier"));
+		Long supp_id=null;
+		String supp=request.getParameter("supplier");
+		if(StringUtils.isNotBlank(supp)){
+			 supp_id=Long.valueOf(supp);
+		}
 		product.setSpecid(specid);
 		product.setSuppid(supp_id);
 		String[] fileNames = request.getParameterValues("filename");
 		product.setUpdateName(user.getUsername());
 		product.setCreateName(user.getUsername());
+		product.setSalesStatus(Constants.ISDELSTATE);
 		//如果比例为空，默认就为1，销售价就等于成本价
 		if(product.getProductFavorable()==null)
 		{

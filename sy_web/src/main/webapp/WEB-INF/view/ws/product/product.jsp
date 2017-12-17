@@ -1,52 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../pageControl/jstlImport.jsp" %>
-<script type="text/javascript">
-$(function(){
-	/* 初始化商品分类一级栏目 */
-	$.ajax({
-			url : "ws/findOneAllByPageJson",
-			type : "get",
-			data : {"levels" : "one"},
-			dataType : "text",
-			cache : false,
-			success : function(data) {
-				$.each($.parseJSON(data), function(index, p) {
-						$("#parentype").append("<option value='"+p.id+"'>"+ p.tname + "</option>");
-				});
-				//$("#productClass").trigger('change');
-			},
-			error : function() {
-				alert("初始化失败！");
-			}
-		});
-  });
 
-function dochange(param){
-	  $.ajax({
-			url : "ws/findSecondAllByPageJson",
-			type : "post",
-			data : {"id" : param},
-			dataType : "json",
-			cache : false,
-			success : function(data) {
-				if(data.length>0){
-					$("#secondtype").html('');
-					$.each(data, function(index, type) {
-							$("#secondtype").append("<option value='"+type.id+"'>"+ type.tname + "</option>");
-					});
-					$("#secondtype").css("display","block");
-				}else{
-					$("#secondtype").html('');
-					$("#secondtype").append("<option  value='-1'>--请选择--</option>");
-					$("#secondtype").css("display","none");
-				}
-			},
-			error : function() {
-				alert("初始化失败！");
-			}
-	  });
-  }
-</script>
 
 <div class="pageHeader">
 	<form id="pagerForm" rel="pagerForm" onsubmit="return navTabSearch(this);" action="ws/findAllProductsByPage" method="post">
@@ -77,7 +31,7 @@ function dochange(param){
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="ws/preAddProduct" target="navTab" title="添加商品"><span>添加</span></a></li>
+			<li><a class="add" href="ws/preAddProduct" target="navTab" title="添加商品" rel="0299"><span>添加</span></a></li>
 			<li><a class="edit" href="ws/findById?id={sid_user}" target="navTab" title="修改商品"><span>修改</span></a></li>
 			<li><a class="delete" href="ws/deleteProduct?id={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li class="line">line</li>
@@ -133,4 +87,50 @@ function dochange(param){
 	</table>
 	<c:import url="../pageControl/paging.jsp" />
 </div>
+<script type="text/javascript">
+$(function(){
+	/* 初始化商品分类一级栏目 */
+	$.ajax({
+			url : "ws/findOneAllByPageJson",
+			type : "get",
+			data : {"levels" : "one"},
+			dataType : "text",
+			cache : false,
+			success : function(data) {
+				$.each($.parseJSON(data), function(index, p) {
+						$("#parentype").append("<option value='"+p.id+"'>"+ p.tname + "</option>");
+				});
+				//$("#productClass").trigger('change');
+			},
+			error : function() {
+				alert("初始化失败！");
+			}
+		});
+  });
 
+function dochange(param){
+	  $.ajax({
+			url : "ws/findSecondAllByPageJson",
+			type : "post",
+			data : {"id" : param},
+			dataType : "json",
+			cache : false,
+			success : function(data) {
+				if(data.length>0){
+					$("#secondtype").html('');
+					$.each(data, function(index, type) {
+							$("#secondtype").append("<option value='"+type.id+"'>"+ type.tname + "</option>");
+					});
+					$("#secondtype").css("display","block");
+				}else{
+					$("#secondtype").html('');
+					$("#secondtype").append("<option  value='-1'>--请选择--</option>");
+					$("#secondtype").css("display","none");
+				}
+			},
+			error : function() {
+				alert("初始化失败！");
+			}
+	  });
+  }
+</script>

@@ -31,7 +31,7 @@ public class WsMtProduct extends ParentEntity {
 	// 提升率
 	private Double productFavorable;
 	//保质期
-	private int expdate;
+	private String expdate;
 	//生产日期
 	private String producedate;
 	//产地
@@ -215,11 +215,11 @@ public class WsMtProduct extends ParentEntity {
 	public void setUser(SysUser user) {
 		this.user = user;
 	}
-	public int getExpdate() {
+	public String getExpdate() {
 		return expdate;
 	}
 
-	public void setExpdate(int expdate) {
+	public void setExpdate(String expdate) {
 		this.expdate = expdate;
 	}
 

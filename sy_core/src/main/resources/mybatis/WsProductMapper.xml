@@ -24,12 +24,134 @@
 	
 		
 	<!-- 增加产品 -->
+	<!-- 
 	<insert id="create" parameterType="WsMtProduct" keyProperty="id" useGeneratedKeys="true">
 		insert into ws_mt_product(product_name,product_remark,product_price,product_city,create_name,create_time,
-		    product_favorable,bazaar_price,product_expdate,product_date,product_address,spec_id,supp_id,product_picpath)
+		    product_favorable,bazaar_price,product_expdate,product_date,product_address,spec_id,supp_id,product_picpath,salesStatus)
 		values(#{productName},#{productRemark},#{productPrice},#{productCity},#{createName},#{createTime},
-		#{productFavorable},#{bazaarPrice},#{expdate},#{producedate},#{productaddress},#{specid},#{suppid},#{propicpath})
+		#{productFavorable},#{bazaarPrice},#{expdate},#{producedate},#{productaddress},#{specid},#{suppid},#{propicpath},#{salesStatus})
 	</insert>
+	 -->
+	
+<insert id="create" parameterType="WsMtProduct" keyProperty="id"
+	useGeneratedKeys="true">
+	insert into ws_mt_product
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="productName != null">
+			product_name,
+		</if>
+		<if test="propicpath != null">
+			product_picpath,
+		</if>
+		<if test="productPrice != null">
+			product_price,
+		</if>
+		<if test="producedate != null">
+			product_date,
+		</if>
+		<if test="productaddress != null">
+			product_address,
+		</if>
+		<if test="expdate != null">
+			product_expdate,
+		</if>
+		
+		<if test="productFavorable != null">
+			product_favorable,
+		</if>
+		<if test="bazaarPrice != null">
+			bazaar_price,
+		</if>
+		<if test="productCity != null">
+			product_city,
+		</if>
+		<if test="specid != null">
+			spec_id,
+		</if>
+		<if test="suppid != null">
+			supp_id,
+		</if>
+		<if test="createName != null">
+			create_name,
+		</if>
+		<if test="createTime != null">
+			create_time,
+		</if>
+		<if test="updateName != null">
+			update_name,
+		</if>
+		<if test="updateTime != null">
+			update_time,
+		</if>
+		<if test="salesStatus != null">
+			salesStatus,
+		</if>
+		<if test="pDelStatus != null">
+			p_del_status,
+		</if>
+		<if test="productRemark != null">
+			product_remark,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="productName != null">
+			#{productName,jdbcType=VARCHAR},
+		</if>
+		<if test="propicpath != null">
+			#{propicpath,jdbcType=VARCHAR},
+		</if>
+		<if test="productPrice != null">
+			#{productPrice,jdbcType=DOUBLE},
+		</if>
+		<if test="producedate != null">
+			#{producedate,jdbcType=VARCHAR},
+		</if>
+		<if test="productaddress != null">
+			#{productaddress,jdbcType=VARCHAR},
+		</if>
+		<if test="expdate != null">
+			#{expdate,jdbcType=VARCHAR},
+		</if>
+		<if test="productFavorable != null">
+			#{productFavorable,jdbcType=DOUBLE},
+		</if>
+		<if test="bazaarPrice != null">
+			#{bazaarPrice,jdbcType=DOUBLE},
+		</if>
+		<if test="productCity != null">
+			#{productCity,jdbcType=VARCHAR},
+		</if>
+		<if test="specid != null">
+			#{specid,jdbcType=TINYINT},
+		</if>
+		<if test="suppid != null">
+			#{suppid,jdbcType=BIGINT},
+		</if>
+		<if test="createName != null">
+			#{createName,jdbcType=VARCHAR},
+		</if>
+		<if test="createTime != null">
+			#{createTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateName != null">
+			#{updateName,jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null">
+			#{updateTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="salesStatus != null">
+			#{salesStatus,jdbcType=TINYINT},
+		</if>
+		<if test="pDelStatus != null">
+			#{pDelStatus,jdbcType=TINYINT},
+		</if>
+		<if test="productRemark != null">
+			#{productRemark,jdbcType=LONGVARCHAR},
+		</if>
+	</trim>
+</insert>
+	
+	
 	
 	<!-- 增加产品与用户关联 -->
 	<insert id="addProductUser" parameterType="WsProductUser" useGeneratedKeys="true" keyProperty="id">
@@ -60,7 +182,7 @@
 	 </update>
 	 
 	 
-	<!-- 修改产品 -->
+	<!-- 修改产品product_expdate=#{expdate}, -->
 	<update id="update" parameterType="WsMtProduct">
 		update ws_mt_product 
 		<set>
@@ -71,12 +193,12 @@
 			bazaar_price =#{bazaarPrice},
 			product_price =#{productPrice},
 			product_city =#{productCity},
-			product_expdate=#{expdate},
 			product_date=#{producedate},
 			product_address=#{productaddress},
 			spec_id=#{specid},
 			supp_id=#{suppid},
-			update_name=#{updateName}
+			update_name=#{updateName},
+			product_expdate=#{expdate}
 		</set>
 		where product_id = #{id};
 	</update>

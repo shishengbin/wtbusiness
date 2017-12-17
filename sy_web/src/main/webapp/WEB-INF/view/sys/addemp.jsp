@@ -54,8 +54,8 @@
 				<label>学历：</label>
 				<select name="eEducation" class="required combox">
 					<option value="">请选择</option>
-					<option value="1" selected>本科</option>
-					<option value="2" >大专</option>
+					<option value="1" selected>大专</option>
+					<option value="2" >本科</option>
 					<option value="3">博士</option>
 					<option value="4">其它</option>
 				</select>

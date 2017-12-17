@@ -2,7 +2,7 @@
 <%@ include file="../pageControl/jstlImport.jsp" %>
 <html>
 <body> 
-<form action="ws/addProduct" method="post" id="iform" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+<form action="${pageContext.request.contextPath}/ws/addProduct" method="post" id="iform" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
 	<p class="contentTitle" style="font-size: 15px;color: #09c;font-weight: bold;">
 			商品信息
 		</p>
@@ -14,9 +14,9 @@
 			<fieldset>
 				<legend>基本信息</legend>
 				<dl>
-					<dt >产品名称:</dt>
+					<dt >商品名称:</dt>
 					<dd>
-						<input name="productName" value="${product.productName}"class="required"><span class="info"></span>
+						<input type="text" name="productName" value="${product.productName}"class="required"><span class="info"></span>
 					</dd>
 				</dl>
 				<dl>
@@ -27,9 +27,9 @@
 					</dd>
 				</dl>
 				<dl>
-					<dt >保 质 期:</dt>
+					<dt >资历:</dt>
 					<dd>
-						<input name="expdate" value="${product.expdate}" class="required" >天<span class="info"></span>
+						<input type="text" name="expdate" value="${product.expdate}" />年<span class="info"></span>
 					</dd>
 				</dl>
 				<dl>

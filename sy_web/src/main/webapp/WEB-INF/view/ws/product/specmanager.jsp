@@ -20,9 +20,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="ws/preAddSpec" target="dialog" width="500" height="240" title="添加规格"><span>添加</span></a></li>
-			<li><a class="delete" href="ws/delSpec?id={sid_user}" target="ajaxTodo" title="确定要删除吗?" ><span>删除</span></a></li>
-			<li><a class="edit" href="ws/findSpecById?id={sid_user}" target="dialog" width="500" height="240" title="修改规格" ><span>修改</span></a></li>
+			<li><a class="add" href="${pageContext.request.contextPath}/ws/preAddSpec" target="dialog" width="500" height="240" title="添加规格"><span>添加</span></a></li>
+			<li><a class="delete" href="${pageContext.request.contextPath}/ws/delSpec?id={sid_user}" target="ajaxTodo" title="确定要删除吗?" ><span>删除</span></a></li>
+			<li><a class="edit" href="${pageContext.request.contextPath}/ws/findSpecById?id={sid_user}" target="dialog" width="500" height="240" title="修改规格" ><span>修改</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>

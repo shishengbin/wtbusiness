@@ -12,7 +12,7 @@
 			<p>
 				<label>员工编号：</label>
 				
-				<input name="eNumber" type="text" size="30"  readonly="readonly" value="${emp['eNumber'] }"/>
+				<input name="eNumber" type="text" size="30"   value="${emp['eNumber'] }"/>
 			</p>
 			<p>
 				<label>英文名：</label>
@@ -59,10 +59,10 @@
 				<label>学历：</label>
 				<select name="eEducation" class="required combox">
 					<option value="">请选择</option>
-					<option value="1" selected>本科</option>
-					<option value="2" >大专</option>
-					<option value="3">博士</option>
-					<option value="4">其它</option>
+					<option value="1" <c:if test="${emp['eEducation']==1 }">selected</c:if> >大专</option>
+					<option value="2" <c:if test="${emp['eEducation']==2 }">selected</c:if> >本科</option>
+					<option value="3" <c:if test="${emp['eEducation']==3 }">selected</c:if> >博士</option>
+					<option value="4" <c:if test="${emp['eEducation']==4 }">selected</c:if> >其它</option>
 				</select>
 			</p>
 			<p>
