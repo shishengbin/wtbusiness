@@ -9,9 +9,11 @@
 	<modules>
 		<module>sy_core</module>
 		<module>sy_common</module>
-		<module>sy_web</module>
+		<module>sy_web_wt</module>
 		<module>sy_platform</module>
 		<module>sy_api</module>
+
+		<module>sy_web</module>
 	</modules>
 
 	<properties>

@@ -8,9 +8,9 @@
 		<artifactId>sybusiness</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>sy_web</artifactId>
+	<artifactId>sy_web_wt</artifactId>
 	<packaging>war</packaging>
-	<name>sy_web Maven Webapp</name>
+	<name>sy_web_wt Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -62,7 +62,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>sy_web</finalName>
+		<finalName>sy_web_wt</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>

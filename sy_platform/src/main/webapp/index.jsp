@@ -114,7 +114,8 @@ $(function() {
 <body id="home"  onkeyup ="kk(event)">
 <div id="header">
 	<div class="container">
-		<h1> <a href="" id="logo" name="top"><span></span><img src="images/logo.png" border="0" width="182" height="51" /></a> </h1>
+	<!-- <img src="images/logo.png" border="0" width="182" height="51" /> -->
+		<h1> <a href="" id="logo" name="top"><span></span></a> </h1>
 		<div id="Layer1">
 			<table width="700" height="29" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tbody>

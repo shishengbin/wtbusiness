@@ -13,7 +13,7 @@
 <body onkeyup="kk(event)" class="bg_body ">
 	<div class="login">
 		<div class="home_in">
-			<a href="http://www.szsuoyuan.com" target="_blank"> <img
+			<a href="http://www.wedoss.com" target="_blank"> <img
 				src="images/home_in.png" />
 			</a>
 		</div>
