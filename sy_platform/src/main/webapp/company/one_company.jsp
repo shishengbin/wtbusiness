@@ -134,7 +134,7 @@ function check_companyPerson(){
 		<tr style="line-height: 45px;">
 		  <td align="right" valign="middle" width="150">备注：</td>
 		  <td> 
-		    <textarea name="companyDescibe" cols="17" rows="3"  id="companyDescibe" style="font-family:Arial,sans-serif;font-size: 14px;">${ac.companyDescibe}</textarea>
+		    <textarea name="companyDescibe" cols="26" rows="5"  id="companyDescibe" style="font-family:Arial,sans-serif;font-size: 14px;">${ac.companyDescibe}</textarea>
 		  </td>
 		</tr>
 		<tr style="line-height: 45px;">

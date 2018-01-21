@@ -10,7 +10,7 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT"> 
-<title>薇汀平台管理中心</title>
+<title>婚礼互联平台管理中心</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
@@ -171,7 +171,7 @@ $(function() {
 <!-- 底部 -->
 <div class="foot">
 <div id="Layer2">
-	<div align="center"><span class="foot_text" >Copyright © 2013-2017 SUOYUAN Corporation, All Rights Reserved. 索远(苏州)软件科技有限公司 苏ICP备14012973号</a></span></div>
+	<div align="center"><span class="foot_text" >Copyright © 2013-2017  Corporation, All Rights Reserved. 婚礼互联(盐城)平台管理中心 苏ICP备14012973号</a></span></div>
 </div>
 <!--end of foot-->
 </div>

@@ -10,7 +10,7 @@
 	<!-- 搜索框 -->
 			<table class="biaogedaoh">
 				<tr>
-					<td>APP名称：<input style="width: 90px;" name="keyword" value="${keyword}" placeholder="名称匹配"></td>
+					<td>客户简称：<input style="width: 90px;" name="keyword" value="${keyword}" placeholder="名称匹配"></td>
 					<td>下单时间：<input type="text" class="Wdate"
 						onClick="WdatePicker()" style="width: 90px" name="beginDate" value="${beginDate }" placeholder="起始日期">至<input
 						style="width: 90px;" type="text" class="Wdate"
@@ -27,7 +27,7 @@
 			<tr>
 				<th width="15"></th>
 				<th width="75">订单类型</th>
-				<th width="100">APP</th>
+				<th width="100">客户简称</th>
 				<th>客户名称</th>
 				<!-- <th width="35">年限</th> -->
 				<!-- <th width="60">现价</th> -->

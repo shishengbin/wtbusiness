@@ -3,6 +3,8 @@ package com.sy.web.controller.ws;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.sy.commons.utils.DateUtil;
 import com.sy.modules.common.GlobalConstants;
 import com.sy.modules.entity.sys.SysUser;
 import com.sy.modules.entity.ws.WsNews;
 import com.sy.modules.entity.ws.WsNewsUser;
 import com.sy.modules.service.ws.WsNewsService;
+import com.sy.modules.utils.HtmlUtil;
 import com.sy.web.commons.Constants;
 import com.sy.web.commons.DataTool;
 import com.sy.web.commons.JsonUtil;
@@ -224,4 +228,80 @@ public class WsNewsController extends PageSet {
 		response.setContentType("image/jpeg;charset=UTF-8");
 		WsNews ne = newservice.findById(newsid);
 	}
+	
+	
+	//---------------------------------接口-------------------------------
+		/**
+		 * 分页显示惠民新闻
+		 * @throws ParseException 
+		 */
+		@RequestMapping(value="/selectbenefitPeopleForApp")
+		@ResponseBody
+		public List<Map<String,String>> selectbenefitPeopleForApp(HttpServletRequest request,HttpServletResponse response) throws ParseException{
+			log.info("entering...WsNewsController...getBenefitPeopleForApp()");
+			Map <String,Object> param = new HashMap<String,Object>();
+			this.setPagination(request, param);
+			param.put("userid", 1L);
+			List<WsNews> list= newservice.findAllNewsByPage(param);
+			List<Map<String,String>> rlist = new ArrayList<Map<String,String>>();
+			if(list==null||list.size()==0){
+				return rlist;
+			}
+			for(WsNews ws:list){
+				String imgUrl="";
+				Map<String,String> rmap = new HashMap<String,String>();
+				if(ws.getNewsRemark()!=null&&ws.getNewsRemark().trim().length()>0){
+					String[] fileurl = ws.getNewsRemark().trim().split(",");
+					for(int i=0;i<fileurl.length;i++){
+						if(i==fileurl.length-1){
+							imgUrl+=GlobalConstants.DB_IMAGE_FILE+GlobalConstants.SEPARATOR+Constants.APPIMAGES+fileurl[i];
+							
+						}else{
+							imgUrl+=GlobalConstants.DB_IMAGE_FILE+GlobalConstants.SEPARATOR+Constants.APPIMAGES+fileurl[i]+",";
+						}
+					}
+					rmap.put("imgUrl", imgUrl);
+				}else{
+					rmap.put("imgUrl", "");
+				}
+				rmap.put("newsTitle", ws.getNewsTitle()!=null?ws.getNewsTitle().trim():"");
+			    rmap.put("newsId", ws.getId()!=null?ws.getId().toString():"");
+			    rmap.put("newsResource",ws.getNewsAuthor()!=null?ws.getNewsAuthor().trim():"");
+			    rmap.put("readCount","100");
+			    SimpleDateFormat form= new SimpleDateFormat("yyyy-MM-dd");
+			    rmap.put("releaseDate", form.format(ws.getCreateTime()));
+			    rlist.add(rmap);
+			}
+			return rlist;
+		}
+		
+		
+		/**
+		 * 根据新闻ID查看新闻详细信息
+		 * （手机app端）
+		 */
+		@RequestMapping(value="/wap/selectNewsByIdForApp")
+		@ResponseBody
+		public Map<String,String> selectNewsByIdForAjax(HttpServletRequest request,HttpServletResponse response,
+				@RequestParam(value="newsId",required=true) Long newsid) {
+			log.info("entering...WsNewsController...selectNewsByIdForApp()");
+			Map<String,String> rmap = new HashMap<String,String>();
+			WsNews ws = newservice.findById(newsid);
+			if(ws==null||ws.getId()==null){
+				return rmap;
+			}
+			if(ws.getNewsRemark()!=null&&ws.getNewsRemark().trim().length()>0){
+				rmap.put("imgUrl", GlobalConstants.DB_IMAGE_FILE+GlobalConstants.SEPARATOR+Constants.APPIMAGES+ws.getNewsRemark());
+			}else{
+				rmap.put("imgUrl", "");
+			}
+			rmap.put("newsTitle", ws.getNewsTitle()!=null?ws.getNewsTitle().trim():"");
+			rmap.put("newsSource", ws.getNewsAuthor()!=null?ws.getNewsAuthor().trim():"");
+		    rmap.put("newsContent",ws.getNewsContent()!=null?HtmlUtil.delHTMLTag(ws.getNewsContent().trim()):"");
+		    rmap.put("date",DateUtil.formatDate(ws.getCreateTime(), DateUtil.DATEFORMAT));
+		    rmap.put("newsId", ws.getId()!=null?ws.getId()+"":"");
+			return rmap;
+		}
+		
+	
 }

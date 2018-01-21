@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sy.modules.common.GlobalConstants;
 import com.sy.modules.entity.sys.SysUser;
 import com.sy.modules.entity.wx.Account;
 import com.sy.modules.entity.wx.Articleaccount;
@@ -204,7 +205,9 @@ public class MyArticleController extends PageSet {
 		//根据id查询单个图文信息
 		MyArticle myarticle= myarticleservice.findById(articleId);
 		request.setAttribute("myarticle", myarticle);
-		request.setAttribute("picurl", Constants.DB_IMAGE_FILE+"/"+myarticle.getPicUrl());
+		if(StringUtils.isNotBlank(myarticle.getPicUrl())){
+			request.setAttribute("picurl", GlobalConstants.DB_IMAGE_FILE+GlobalConstants.SEPARATOR+Constants.APPIMAGES+myarticle.getPicUrl());
+		}
 		return "wx/updatesinglearticle";
 	}
 	
@@ -335,7 +338,9 @@ public class MyArticleController extends PageSet {
 		//根据id查询单个图文信息
 		MyArticle myarticle= myarticleservice.findById(articleId);
 		request.setAttribute("myarticle", myarticle);
-		request.setAttribute("picurl", Constants.DB_IMAGE_FILE+"/"+myarticle.getPicUrl());
+		if(StringUtils.isNotBlank(myarticle.getPicUrl())){
+			request.setAttribute("picurl", GlobalConstants.DB_IMAGE_FILE+GlobalConstants.SEPARATOR+Constants.APPIMAGES+myarticle.getPicUrl());
+		}
 		return "wx/updatemanarticle";
 	}
 	

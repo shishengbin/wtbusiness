@@ -59,6 +59,7 @@ public class SysLoginController {
 			//角色
 			List<SysMenu> menuList=roleservice.findAllMenusBuRoleId(role.getWtRMenuids());
 			session.setAttribute(Constants.USER_LOGIN_SESSION_KEY, user);
+			model.addAttribute("username", user.getUsername());
 			model.addAttribute("menuList", menuList);
 			log.info("leaving...SysLoginController...login()...");
 			return "indexform";

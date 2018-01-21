@@ -107,7 +107,12 @@
 			<div class="unit">
 			  <div class="ke-upload-area">
 				<label>图片封面：</label>
-					<img alt="" src="${picurl }" id="preview" name="picture"  width="150px" height="100px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<c:if test="${empty picurl }">
+						<img alt="" src="images/fm.png" id="preview" name="picture"  width="150px" height="100px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${not empty picurl }">
+						<img alt="" src="${picurl }" id="preview" name="picture"  width="150px" height="100px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:if>
 					<span class="ke-button-common">
 					  <input class="ke-button-common ke-button" type="button" style="width: 80px;">
 					</span>

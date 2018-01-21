@@ -31,7 +31,7 @@
 							<dd class="showbor">${indent.payment.name }</dd> --%>
 							<dt>下单时间：</dt>
 							<dd class="showbor"><fmt:formatDate value="${indent.createTime }" pattern="yyyy-MM-dd HH:mm"/></dd>
-							<dt>交易状态：</dt>
+							<dt>支付状态：</dt>
 							<dd style="color: red">
 								<c:choose>
 									<c:when test="${indent.status ==0}">
@@ -72,9 +72,10 @@
 			</tbody>
 			<tfoot>
 				<tr>
+				<%--
 					<td colspan="6"><dl>
-							<%-- <dt>用户账号：</dt>
-							<dd class="showbor">${indent.human.human_account }</dd> --%>
+							 <dt>用户账号：</dt>
+							<dd class="showbor">${indent.human.human_account }</dd> 
 							<dt>商家名称：</dt>
 							<dd class="showbor">${indent.remark }</dd>
 							<dt>收货人：</dt>
@@ -114,6 +115,7 @@
 							<dt>收货地址：</dt>
 							<dd>${indent.transportDestination }</dd>
 						</dl></td>
+						--%>
 				</tr>
 			</tfoot>
 		</table>

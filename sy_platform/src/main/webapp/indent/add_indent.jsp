@@ -30,7 +30,7 @@
 							<span><font>*</font>请选择客户名称</span>
 						</td>
 						<td width="51%">所属合同号： <input type="text" name="formalid" />
-							<span><font>*</font>请输入APP合同号</span>
+							<span><font>*</font>请输入合同号</span>
 						</td>
 					</tr>
 				</table>
@@ -51,7 +51,7 @@
 			<br/>
 			--%>
 			<div style="height: 30px;">
-				<strong>商家后台管理设置：</strong>
+				<strong>企业后台账号设置：</strong>
 			</div>
 				<table>
 					<tr>

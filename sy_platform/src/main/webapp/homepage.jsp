@@ -108,40 +108,25 @@ $(function(){
 		</div>
 		<!--// gao end -->
 		<div class="gao">
-			<h3 class="p_title"><span>合作伙伴</span><a href="javascript:content(316)"  url="showPosts" class="STYLE6" style="float:right"></a></h3>
+			<h3 class="p_title"><span>平台版本</span><a href="javascript:content(316)"  url="showPosts" class="STYLE6" style="float:right"></a></h3>
 			 <table width="100%" class="mytable">
 					<tr>
-						<td>vHome_标准版</td>
-						<td>vHome_电商版</td>
-						<td>vHome_多店版</td>
-						<td>vHome_汽车板</td>
-						<td>vHome_酒店版</td>
-						<td>vHome_餐饮版</td>
+						<td>标准版</td>
+						<td>企业版</td>
+						<td>多店版</td>
+						<td>行业板</td>
+						<td>酒店版</td>
+						<td>定制版</td>
 					</tr>
 					<tr>
 						<td><img width="70px" height="70px" src="image/xuanchuan.png" /></td>
-						<td><img width="70px" height="70px" src="image/jiaoyi.png" /></td>
+						<td><img width="70px" height="70px" src="image/hy.png" /></td>
 						<td><img width="70px" height="70px" src="image/duodian.png" /></td>
 						<td><img width="70px" height="70px" src="image/a-qc.png" /></td>
 						<td><img width="70px" height="70px" src="image/a-jd.png" /></td>
-						<td><img width="70px" height="70px" src="image/a-cy.png" /></td>
-					</tr>
-					<tr>
-						<td>vHome_房产版</td>
-						<td>vHome_行业版</td>
-						<td>APP_定制版</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><img width="70px" height="70px" src="image/a-fc.png" /></td>
-						<td><img width="70px" height="70px" src="image/hy.png" /></td>
 						<td><img width="70px" height="70px" src="image/a-dz.png" /></td>
-						<td></td>
-						<td></td>
-						<td></td>
 					</tr>
+					
 				</table>
 			<p>&nbsp;</p>
 		</div>

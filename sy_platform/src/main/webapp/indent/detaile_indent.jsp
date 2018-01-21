@@ -32,7 +32,7 @@
 			订单金额：
 			</td>
 			<td>
-			代为制作：${indent.agency==0?'自行制作':'由索远科技代理制作' }
+			技术支持：${indent.agency==0?'自行制作':'由婚礼互联平台提供技术支持' }
 			</td>
 			<td>注册编码：${indent.coding}</td>
 		</tr>
@@ -68,16 +68,16 @@
 		<tr>
 			<td >后台账号：${indent.user.username }</td>
 			<td >密码：${indent.user.userpass }</td>
-			<td> 账号状态：${indent.user.userstuts==0?'未激活':'已激活' }</td>
+			<td> 账号状态：${indent.user.userstatus==0?'未激活':'已激活' }</td>
 			<td>主营业务：${indent.user.company.companybusiness }</td>
 		</tr>
 	</table>
 </fieldset>
 <fieldset style="display: inline;">
-	<legend>APP信息</legend>
+	<legend>企业后台信息</legend>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
-			<td>APP名称：${indent.user.key.kw_name }  </td>
+			<td>企业简称：${indent.user.key.kw_name }  </td>
 			<!-- 
 			<td>关键词类型： </td>
 			<td>关键词价格：</td> 
@@ -85,7 +85,7 @@
 			-->
 		</tr>
 		<tr>
-			<td colspan="4">APP后台地址：<a href="javascript:void(0)" onclick="window.open('http://www.szsuoyuan.com/login.jsp')">http://www.szsuoyuan.com/login.jsp</a></td>
+			<td colspan="4">后台地址：<a href="javascript:void(0)" onclick="window.open('http://www.wedoss.com/sy_web_wt/login.jsp')">http://www.wedoss.com/sy_web_wt/login.jsp</a></td>
 		</tr>
 	</table>
 </fieldset>

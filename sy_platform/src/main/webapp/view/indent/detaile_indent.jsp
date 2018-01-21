@@ -68,7 +68,7 @@
 		<tr>
 			<td >后台账号：${indent.user.username }</td>
 			<td >密码：${indent.user.userpass }</td>
-			<td> 账号状态：${indent.user.userstuts==0?'未激活':'已激活' }</td>
+			<td> 账号状态：${indent.user.userstatus==0?'未激活':'已激活' }</td>
 			<td>主营业务：${indent.user.company.companybusiness }</td>
 		</tr>
 	</table>
@@ -85,7 +85,7 @@
 			-->
 		</tr>
 		<tr>
-			<td colspan="4">APP后台地址：<a href="javascript:void(0)" onclick="window.open('http://www.szsuoyuan.com/login.jsp')">http://www.szsuoyuan.com/login.jsp</a></td>
+			<td colspan="4">APP后台地址：<a href="javascript:void(0)" onclick="window.open('http://www.wedoss.com/sy_web_wt/login.jsp')">http://www.szsuoyuan.com/login.jsp</a></td>
 		</tr>
 	</table>
 </fieldset>
