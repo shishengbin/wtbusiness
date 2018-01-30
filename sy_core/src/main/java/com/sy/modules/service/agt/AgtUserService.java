@@ -17,6 +17,7 @@ import com.sy.modules.entity.agt.AgtUser;
 import com.sy.modules.service.sys.CompanyInfoService;
 
 @Component
+
 public class AgtUserService extends AbstractService<AgtUser, Long, AgtUserDao> {
 
 	@Autowired
@@ -49,6 +50,7 @@ public class AgtUserService extends AbstractService<AgtUser, Long, AgtUserDao> {
 	}
 
 	// 登录
+	@Transactional
 	public AgtUser agtLogin(String u_name) {
 		return agtuserdao.agtLogin(u_name);
 	}

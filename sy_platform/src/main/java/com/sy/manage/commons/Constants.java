@@ -6,7 +6,6 @@ package com.sy.manage.commons;
  * @author sss 2013-8-15
  */
 public class Constants {
-	// APP wx 后台
 	public static final String AGT_USER_LOGIN_SESSION_KEY = "sessionkey";
 	
 	public static final Long FATHERID=1L;
